@@ -286,6 +286,57 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+/* ==== HAMBURGER ==== */
+.hamburger {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: rgba(20, 0, 40, 0.95);
+    padding: 15px 0;
+    border-top: 2px solid #b400ff;
+    position: absolute;
+    top: 70px;
+    left: 0;
+  }
+
+  nav ul.show {
+    display: flex;
+    animation: menuSlide 0.5s ease forwards;
+  }
+
+  nav ul li {
+    padding: 10px 20px;
+    width: 100%;
+  }
+
+  nav ul li.dropdown ul.dropdown-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    padding-left: 20px;
+  }
+}
+
+@keyframes menuSlide {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
   </style>
 </head>
 <body>
@@ -298,6 +349,10 @@
     <div class="logo">
       <img src="logo.png" alt="MEDYRA Logo">
     </div>
+
+<div class="hamburger" id="hamburger">
+  <i class="fas fa-bars"></i>
+</div>
 
     <ul>
       <li><a id="btn-accueil">Accueil</a></li>
@@ -367,8 +422,14 @@
         accueil.style.display = "none";
         serveur.style.display = "flex";
       });
+
+      const hamburger = document.getElementById("hamburger");
+const navMenu = document.querySelector("nav ul");
+
+hamburger.addEventListener("click", () => {
+  navMenu.classList.toggle("show");
+});
     });
   </script>
 </body>
 </html>
-
