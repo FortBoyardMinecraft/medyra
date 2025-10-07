@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <title>MEDYRA - Gaming</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+  <style>
+    /* ==== RESET ==== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: url("fond.png") no-repeat center center/cover;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(40,0,70,0.7);
+      z-index: -1;
+    }
+
+    /* ==== NAVBAR ==== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(20, 0, 40, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid #b400ff;
+      box-shadow: 0 0 15px #ff00ff;
+    }
+
+    nav .logo img {
+      height: 50px;
+      width: auto;
+      filter: drop-shadow(0 0 10px #ff00ff);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s;
+      text-shadow: 0 0 8px #ff66ff;
+      cursor: pointer;
+    }
+
+    nav ul li a:hover {
+      color: #ff66ff;
+      text-shadow: 0 0 15px #ff00ff;
+    }
+
+    /* ==== DROPDOWN ==== */
+    nav ul li.dropdown ul.dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      display: none;
+      background: rgba(30, 0, 60, 0.95);
+      border: 1px solid #b400ff;
+      border-radius: 10px;
+      list-style: none;
+      padding: 10px 0;
+      min-width: 180px;
+      box-shadow: 0 0 15px #ff00ff;
+      z-index: 10;
+    }
+
+    nav ul li.dropdown:hover ul.dropdown-menu {
+      display: block;
+      animation: dropdownFade 0.3s ease forwards;
+    }
+
+    nav ul li.dropdown ul.dropdown-menu li {
+      padding: 10px 20px;
+    }
+
+    nav ul li.dropdown ul.dropdown-menu li a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      transition: 0.3s;
+    }
+
+    nav ul li.dropdown ul.dropdown-menu li a:hover {
+      color: #ff66ff;
+      text-shadow: 0 0 10px #ff00ff;
+    }
+
+    @keyframes dropdownFade {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==== HERO ==== */
+    .hero {
+      height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 20px 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 70px;
+      color: white;
+      opacity: 0;
+      text-shadow: 0 0 25px #ff00ff, 0 0 50px #b400ff;
+      transition: opacity 1s ease, transform 1s ease;
+      transform: translateY(-30px);
+    }
+
+    .hero h1.show {
+      opacity: 1;
+      transform: translateY(0);
+      animation: glow 2s infinite alternate 1s;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #ff66ff, 0 0 40px #b400ff; }
+      to   { text-shadow: 0 0 40px #ff00ff, 0 0 80px #b400ff; }
+    }
+
+    /* ==== POPUP ==== */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 100;
+    }
+
+    .overlay.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup {
+      background: #200030;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 25px #ff00ff;
+      color: white;
+      transform: scale(0.7);
+      opacity: 0;
+      animation: popupIn 0.8s ease forwards;
+    }
+
+    @keyframes popupIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      60% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .popup h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      text-shadow: 0 0 15px #ff00ff;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    .popup p {
+      opacity: 0;
+      animation: fadeInDown 1.5s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .popup button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: #b400ff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+      opacity: 0;
+      animation: fadeInDown 1.5s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    .popup button:hover {
+      background: #ff00ff;
+      box-shadow: 0 0 15px #ff00ff, 0 0 30px #b400ff;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==== FLOATING SOCIAL ICONS ==== */
+    .floating-socials {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 200;
+    }
+
+    .floating-socials a {
+      color: white;
+      font-size: 40px;
+      text-shadow: 0 0 10px #ff66ff;
+      transition: 0.3s;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    .floating-socials a.youtube:hover {
+      color: #ff0000;
+      text-shadow: 0 0 20px #ff0000;
+    }
+
+    .floating-socials a.discord:hover {
+      color: #7289da;
+      text-shadow: 0 0 20px #7289da;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* ==== SECTION SERVEUR ==== */
+    .section {
+      display: none;
+      height: calc(100vh - 80px);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 30px;
+      font-size: 28px;
+      line-height: 1.5;
+      animation: fadeIn 1s ease;
+    }
+
+    .section p {
+      color: #fff;
+      text-shadow: 0 0 15px #b400ff;
+    }
+
+    .section strong {
+      color: #ff66ff;
+      text-shadow: 0 0 15px #ff00ff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="socials">
+      <h2>🌸🌺MEDYRA🌺🌸 Enjoy experience</h2>
+    </div>
+
+    <div class="logo">
+      <img src="logo.png" alt="MEDYRA Logo">
+    </div>
+
+    <ul>
+      <li><a id="btn-accueil">Accueil</a></li>
+      <li><a id="btn-serveur">Le serveur</a></li>
+      <li class="dropdown">
+        <a>Modes de jeu ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="https://fortboyardminecraft.github.io/accueil/index.html" target="_blank">🏰 Le Fort</a></li>
+          <li><a href="#">🌆 Visite libre</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Lore</a></li>
+      <li><a href="#">L'équipe</a></li>
+      <li><a href="#">Contacte</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="accueil">
+    <h1>Bienvenue sur 🌊MEDYRA🌊</h1>
+  </section>
+
+  <section class="section" id="serveur">
+    <p>
+      💫 <strong>Medyra</strong> est un <strong>serveur convivial</strong> rempli d’aventures et de fun ! 💫<br><br>
+      🌍 Explore les incroyables maps inspirées de <strong>"The Walking Dead"</strong> 🧟‍♂️,<br>
+      🏰 Participe à des <strong>événements épiques</strong> sur la map de <strong>Fort Boyard</strong> 💪,<br>
+      💬 Détends-toi dans le <strong>Lobby</strong>, rencontre d’autres joueurs et crée-toi une équipe ! 🎮<br><br>
+      ✨ Alors... <strong>rejoins l’aventure dès maintenant !</strong> 🚀
+    </p>
+  </section>
+
+  <div id="overlay" class="overlay">
+    <div class="popup">
+      <h2>Bienvenue sur MEDYRA</h2>
+      <p>Site en construction ⚡</p>
+      <button onclick="fermerPopup()">Entrer</button>
+    </div>
+  </div>
+
+  <div class="floating-socials">
+    <a href="https://www.youtube.com/@leNath_officiel" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    <a href="https://discord.gg/EaGYdfAQ" target="_blank" class="discord"><i class="fab fa-discord"></i></a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const overlay = document.getElementById("overlay");
+      const heroTitle = document.querySelector(".hero h1");
+      const floatingIcons = document.querySelector(".floating-socials");
+      const accueil = document.getElementById("accueil");
+      const serveur = document.getElementById("serveur");
+
+      overlay.classList.add("show");
+
+      window.fermerPopup = function() {
+        overlay.classList.remove("show");
+        heroTitle.classList.add("show");
+        floatingIcons.style.display = "flex";
+      };
+
+      document.getElementById("btn-accueil").addEventListener("click", () => {
+        accueil.style.display = "flex";
+        serveur.style.display = "none";
+      });
+
+      document.getElementById("btn-serveur").addEventListener("click", () => {
+        accueil.style.display = "none";
+        serveur.style.display = "flex";
+      });
+    });
+  </script>
+</body>
+</html>
+
