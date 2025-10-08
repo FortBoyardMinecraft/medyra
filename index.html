@@ -45,6 +45,12 @@
       z-index: 50;
     }
 
+    .nav-title {
+      font-size: 22px;
+      color: #ffb3ff;
+      text-shadow: 0 0 10px #ff00ff;
+    }
+
     nav .logo img {
       height: 50px;
       width: auto;
@@ -113,9 +119,9 @@
       font-size: 70px;
       color: white;
       opacity: 0;
-      transform: translateY(-30px);
-      transition: opacity 1s ease, transform 1s ease;
+      transform: translateY(-50px);
       text-shadow: 0 0 25px #ff00ff, 0 0 50px #b400ff;
+      transition: all 1s ease-out;
     }
 
     .hero h1.show {
@@ -126,7 +132,7 @@
 
     @keyframes glow {
       from { text-shadow: 0 0 20px #ff66ff, 0 0 40px #b400ff; }
-      to { text-shadow: 0 0 40px #ff00ff, 0 0 80px #b400ff; }
+      to   { text-shadow: 0 0 40px #ff00ff, 0 0 80px #b400ff; }
     }
 
     /* ==== POPUP ==== */
@@ -221,7 +227,7 @@
       50% { transform: translateY(-10px); }
     }
 
-    /* ==== SECTIONS ==== */
+    /* ==== SECTION SERVEUR ==== */
     .section {
       display: none;
       justify-content: center;
@@ -295,7 +301,7 @@
 
 <body>
   <nav>
-    <h2>🌸🌺 MEDYRA 🌺🌸</h2>
+    <div class="nav-title">🌸🌺 MEDYRA 🌺🌸 <span style="color:#ffccff;">Enjoy experience</span></div>
     <div class="logo"><img src="logo.png" alt="MEDYRA Logo"></div>
     <div class="hamburger"><i class="fas fa-bars"></i></div>
 
@@ -352,18 +358,18 @@
       const menu = document.querySelector("nav ul");
       const hamburger = document.querySelector(".hamburger");
 
-      // Affiche la popup
+      // Affiche la popup au démarrage
       overlay.classList.add("show");
 
-      // Fermer popup
+      // Ferme la popup et affiche la page d'accueil
       window.fermerPopup = function() {
         overlay.classList.remove("show");
         hero.style.display = "flex";
-        heroTitle.classList.add("show");
+        setTimeout(() => heroTitle.classList.add("show"), 300); // apparition douce du texte
         floatingIcons.style.display = "flex";
       };
 
-      // Navigation entre sections
+      // Navigation
       document.getElementById("btn-accueil").addEventListener("click", () => {
         hero.style.display = "flex";
         serveur.style.display = "none";
