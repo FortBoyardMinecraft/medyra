@@ -264,6 +264,26 @@
         padding: 15px 20px;
       }
 
+.nav-title .subtitle {
+  color: #ffccff;
+  font-size: 18px;
+  margin-left: 8px;
+}
+
+@media (max-width: 600px) {
+  .nav-title {
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .nav-title .subtitle {
+    display: block;
+    font-size: 16px;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+}
+
       .hamburger {
         display: block;
         color: white;
@@ -301,7 +321,10 @@
 
 <body>
   <nav>
-    <div class="nav-title">🌸🌺 MEDYRA 🌺🌸 <span style="color:#ffccff;">Enjoy experience</span></div>
+    <div class="nav-title">
+  🌸🌺 MEDYRA 🌺🌸 
+  <span class="subtitle">Enjoy experience</span>
+</div>
     <div class="logo"><img src="logo.png" alt="MEDYRA Logo"></div>
     <div class="hamburger"><i class="fas fa-bars"></i></div>
 
