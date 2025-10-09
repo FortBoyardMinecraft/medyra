@@ -341,7 +341,7 @@
           <li><a href="#">🌆 Visite libre</a></li>
         </ul>
       </li>
-      <li><a href="#">Lore</a></li>
+      <li><a id="btn-lore">Lore</a></li>
       <li><a href="#">L'équipe</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
@@ -358,6 +358,31 @@
       🏰 Participe à des <strong>événements épiques</strong> sur la map de <strong>Fort Boyard</strong> 💪,<br>
       💬 Détends-toi dans le <strong>Lobby</strong>, rencontre d’autres joueurs et crée-toi une équipe ! 🎮<br><br>
       ✨ Alors... <strong>rejoins l’aventure dès maintenant !</strong> 🚀
+    </p>
+  </section>
+
+  <section class="section" id="lore">
+    <p>
+      📜 <strong>L'histoire de Medyra</strong> 🌊<br><br>
+
+      Le projet <strong>Fort Boyard Minecraft</strong> a vu le jour en <strong>octobre 2020</strong> sur l’édition <strong>PS3</strong>. 🎮  
+      Il connaîtra un petit succès et accueillera ses premiers candidats jusqu’en <strong>2023</strong> 🏰.  
+      Le fort sera ensuite importé sur <strong>Aternos</strong> en tant que <em>version alpha</em> du serveur,  
+      enrichi de <strong>plugins</strong> et de versions plus réalistes du fort — avec les accès, les escaliers et les cellules d’origine ⚙️.<br><br>
+
+      En <strong>2024</strong>, le fort est entièrement <strong>remis à neuf</strong> 🛠️ grâce à des plans à taille réelle  
+      et aux cellules officielles de chaque saison, atteignant sa <em>version bêta</em> ✨.<br><br>
+
+      Aujourd’hui, le fort s’agrandit avec des <strong>maps visite The Walking Dead</strong> créées par des <strong>builders talentueux</strong> 🧱.  
+      Le serveur devient alors public sous le nom de <strong>MEDYRA</strong> — inspiré de <em>Médusa</em>,  
+      la créature mythologique marine 🐍🌊.<br><br>
+
+      Hébergé chez <strong>SeaPalm</strong> 🌐 et <strong>partenaire</strong> du serveur numéro 1 en France  
+      pour Fort Boyard Minecraft, <strong>Britania</strong> 🇫🇷💪,<br>
+      nous espérons que <strong>Medrya</strong> vous plaira et que vous <strong>apprécierez l’expérience</strong> 💫.<br><br>
+
+      <em>"Ce qui compte, ce n’est pas le résultat, mais la distance parcourue."</em><br><br>
+      💖 <strong>MEDYRA — Enjoy experience.</strong> 💖
     </p>
   </section>
 
@@ -379,6 +404,7 @@
       const overlay = document.getElementById("overlay");
       const hero = document.getElementById("accueil");
       const serveur = document.getElementById("serveur");
+      const lore = document.getElementById("lore");
       const heroTitle = document.querySelector(".hero h1");
       const floatingIcons = document.querySelector(".floating-socials");
       const menu = document.querySelector("nav ul");
@@ -396,15 +422,23 @@
       };
 
       // Navigation
-      document.getElementById("btn-accueil").addEventListener("click", () => {
-        hero.style.display = "flex";
-        serveur.style.display = "none";
-      });
+document.getElementById("btn-accueil").addEventListener("click", () => {
+  hero.style.display = "flex";
+  serveur.style.display = "none";
+  lore.style.display = "none";
+});
 
-      document.getElementById("btn-serveur").addEventListener("click", () => {
-        hero.style.display = "none";
-        serveur.style.display = "flex";
-      });
+document.getElementById("btn-serveur").addEventListener("click", () => {
+  hero.style.display = "none";
+  serveur.style.display = "flex";
+  lore.style.display = "none";
+});
+
+document.getElementById("btn-lore").addEventListener("click", () => {
+  hero.style.display = "none";
+  serveur.style.display = "none";
+  lore.style.display = "flex";
+});
 
       // Menu hamburger
       hamburger.addEventListener("click", () => {
