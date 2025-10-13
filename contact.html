@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - MEDYRA</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #200030; color: white; text-align: center; padding: 50px; }
+  input, textarea, button { padding: 12px; margin: 10px 0; border-radius: 8px; border: none; width: 300px; max-width: 90%; }
+  button { background: #b400ff; color: white; cursor: pointer; transition: 0.3s; }
+  button:hover { background: #ff00ff; }
+  #form-success { color: #ff66ff; margin-top: 15px; display: none; }
+</style>
+</head>
+<body>
+
+<h1>✉️ Contactez-nous</h1>
+
+<form id="contact-form">
+  <input type="email" id="email" placeholder="Votre adresse email" required><br>
+  <input type="text" id="pseudo" placeholder="Votre pseudo" required><br>
+  <textarea id="message" placeholder="Votre message" rows="5" required></textarea><br>
+  <button type="submit">Envoyer</button>
+</form>
+
+<p id="form-success">✅ Message envoyé avec succès !</p>
+
+<script>
+  function saveMessage(pseudo, email, message) {
+    const msgs = JSON.parse(localStorage.getItem("medyra_messages") || "[]");
+    msgs.push({ pseudo, email, message, date: new Date().toLocaleString() });
+    localStorage.setItem("medyra_messages", JSON.stringify(msgs));
+  }
+
+  document.getElementById("contact-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const pseudo = document.getElementById("pseudo").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if(email && pseudo && message){
+      saveMessage(pseudo, email, message);
+      document.getElementById("form-success").style.display = "block";
+      this.reset();
+    }
+  });
+</script>
+
+</body>
+</html>
+

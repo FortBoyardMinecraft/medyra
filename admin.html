@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - MEDYRA</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #200030; color: white; text-align: center; padding: 50px; }
+  input, button { padding: 12px; margin: 10px 0; border-radius: 8px; border: none; width: 250px; max-width: 90%; }
+  button { background: #b400ff; color: white; cursor: pointer; transition: 0.3s; }
+  button:hover { background: #ff00ff; }
+  #messages { margin-top: 30px; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto; }
+  .message { background: rgba(30,0,60,0.85); padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+  #login-error { color: #ff6666; }
+</style>
+</head>
+<body>
+
+<h1>🔐 Espace Admin - MEDYRA</h1>
+
+<div id="login-section">
+  <p>Veuillez vous connecter pour accéder aux messages :</p>
+  <input type="text" id="username" placeholder="Identifiant" required><br>
+  <input type="password" id="password" placeholder="Mot de passe" required><br>
+  <input type="text" id="code" placeholder="Code personnel" required><br>
+  <button id="login-btn">Se connecter</button>
+  <p id="login-error"></p>
+</div>
+
+<div id="admin-section" style="display:none;">
+  <h2>📬 Messages reçus</h2>
+  <div id="messages"></div>
+</div>
+
+<script>
+  // Identifiants de connexion admin
+  const ADMIN_USERNAME = "admin";
+  const ADMIN_PASSWORD = "medyra123";
+  const ADMIN_CODE = "102020";
+
+  const loginBtn = document.getElementById("login-btn");
+  loginBtn.addEventListener("click", () => {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const code = document.getElementById("code").value.trim();
+    const error = document.getElementById("login-error");
+
+    if(username === ADMIN_USERNAME && password === ADMIN_PASSWORD && code === ADMIN_CODE){
+      document.getElementById("login-section").style.display = "none";
+      document.getElementById("admin-section").style.display = "block";
+      loadMessages();
+    } else {
+      error.textContent = "⚠️ Identifiant, mot de passe ou code incorrect !";
+    }
+  });
+
+  // Fonction pour charger les messages depuis localStorage
+  function loadMessages(){
+    const messages = JSON.parse(localStorage.getItem("medyra_messages") || "[]");
+    const container = document.getElementById("messages");
+    container.innerHTML = "";
+
+    if(messages.length === 0){
+      container.innerHTML = "<p>Aucun message reçu pour le moment.</p>";
+      return;
+    }
+
+    messages.forEach(msg => {
+      const div = document.createElement("div");
+      div.classList.add("message");
+      div.innerHTML = `<strong>${msg.pseudo}</strong> &lt;${msg.email}&gt; <em>le ${msg.date}</em><br>${msg.message}`;
+      container.appendChild(div);
+    });
+  }
+</script>
+
+</body>
+</html>
+
