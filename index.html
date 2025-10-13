@@ -309,71 +309,48 @@
       cursor: pointer;
     }
 
-    /* ==== RESPONSIVE ==== */
-    @media (max-width: 1024px) {
-      nav {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 15px 20px;
-      }
+    /* === FIX DU MENU HAMBURGER MOBILE === */
+@media (max-width: 1024px) {
+  nav {
+    position: relative;
+    z-index: 1000;
+  }
 
-      .nav-title .subtitle {
-        color: #ffccff;
-        font-size: 18px;
-        margin-left: 8px;
-      }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: rgba(30, 0, 60, 0.97);
+    border-top: 1px solid #b400ff;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    z-index: 9999; /* ✅ S'assure que le menu est au-dessus du contenu */
+    animation: slideDown 0.3s ease forwards;
+  }
 
-      .hamburger {
-        display: block;
-        color: white;
-      }
+  nav ul.show {
+    display: flex;
+  }
 
-      nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: rgba(30, 0, 60, 0.95);
-        border-top: 1px solid #b400ff;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        z-index: 999; /* ✅ permet de s’afficher au-dessus de tout */
-      }
+  nav ul li {
+    text-align: center;
+    padding: 18px 0;
+    width: 100%;
+  }
 
-      nav ul.show {
-        display: flex;
-      }
+  nav ul li a {
+    display: block;
+    width: 100%;
+    font-size: 22px;
+    padding: 10px 0;
+  }
 
-      .hero h1 { font-size: 40px; }
-      .section { font-size: 20px; }
-    }
-
-    @media (max-width: 600px) {
-      .nav-title {
-        text-align: center;
-        line-height: 1.1;
-      }
-
-      .nav-title .subtitle {
-        display: block;
-        font-size: 16px;
-        margin-left: 0;
-        margin-top: 4px;
-      }
-
-      .hero h1 { font-size: 28px; }
-      .section { font-size: 16px; padding: 0 10px; }
-      .popup h2 { font-size: 20px; }
-      .popup p { font-size: 14px; }
-      .popup button { font-size: 14px; padding: 8px 18px; }
-      .floating-socials a { font-size: 28px; }
-      nav ul li.dropdown ul.dropdown-menu li a { font-size: 24px; }
-      .team-member img { width: 100px; height: 100px; }
-      .team-member h3 { font-size: 18px; }
-      .team-member p { font-size: 14px; }
-      #contact form input, #contact form textarea { font-size: 14px; padding: 10px; }
-      #contact form button { font-size: 16px; padding: 10px; }
-    }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
   </style>
 </head>
 
@@ -550,6 +527,11 @@
       hamburger.addEventListener("click", () => {
         menu.classList.toggle("show");
       });
+      // Fermer le menu après un clic sur un lien (version mobile)
+document.querySelectorAll("nav ul li a").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("show");
+  });
 
       // Formulaire contact
       const form = document.getElementById("contact-form");
