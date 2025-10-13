@@ -28,128 +28,78 @@
     z-index: -1;
   }
 
-  nav {
+  .logo-center {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: rgba(30, 0, 60, 0.85);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid #b400ff;
+    justify-content: center;
+    padding: 20px 0;
   }
 
-  .logo img {
-    height: 40px;
-    filter: drop-shadow(0 0 5px #ff00ff);
-  }
-
-  .hamburger {
-    font-size: 28px;
-    cursor: pointer;
-    color: white;
-    transition: 0.3s;
-  }
-
-  .hamburger:hover {
-    color: #ff66ff;
-    transform: scale(1.1);
-  }
-
-  nav ul {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: rgba(30, 0, 60, 0.95);
-    border-top: 1px solid #b400ff;
-    text-align: center;
-    position: absolute;
-    top: 70px;
-    left: 0;
-  }
-
-  nav ul.show {
-    display: flex;
-  }
-
-  nav ul li {
-    list-style: none;
-    padding: 15px 0;
-  }
-
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    transition: 0.3s;
-  }
-
-  nav ul li a:hover {
-    color: #ff66ff;
-  }
-
-  .dropdown-menu {
-    display: none;
-    flex-direction: column;
-    background: rgba(50, 0, 90, 0.9);
-    margin-top: 10px;
-  }
-
-  .dropdown:hover .dropdown-menu {
-    display: flex;
+  .logo-center img {
+    width: 100px;
+    filter: drop-shadow(0 0 10px #ff00ff);
   }
 
   .hero {
     text-align: center;
-    padding: 70px 10px 30px;
+    padding: 30px 10px;
     animation: fadeIn 1.2s ease;
   }
 
   .hero h1 {
-    font-size: 42px;
+    font-size: 36px;
     text-shadow: 0 0 15px #ff00ff, 0 0 30px #b400ff;
   }
 
   .section {
     text-align: center;
-    padding: 40px 20px;
+    padding: 35px 20px;
     font-size: 18px;
-    line-height: 1.5;
+    line-height: 1.6;
     animation: fadeIn 1.5s ease;
+  }
+
+  .btn-fort, .btn-contact, .btn-admin {
+    display: inline-block;
+    background: #b400ff;
+    color: white;
+    padding: 10px 25px;
+    margin: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 0 10px #ff00ff;
+    transition: 0.3s;
+  }
+
+  .btn-fort:hover, .btn-contact:hover, .btn-admin:hover {
+    background: #ff00ff;
+    transform: scale(1.05);
   }
 
   .team-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
   }
 
   .team-member {
     background: rgba(40, 0, 70, 0.8);
     padding: 15px;
     border-radius: 15px;
-    width: 160px;
+    width: 150px;
     box-shadow: 0 0 15px #b400ff;
-    animation: fadeIn 2s ease;
   }
 
   .team-member img {
     width: 100%;
-    height: auto;
     border-radius: 50%;
     box-shadow: 0 0 15px #ff00ff;
   }
 
   .team-member h3 {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 18px;
     color: #ffccff;
-  }
-
-  .team-member p {
-    font-size: 16px;
   }
 
   .overlay {
@@ -194,6 +144,41 @@
     transform: scale(1.05);
   }
 
+  /* 🔹 Menu flottant bas */
+  .bottom-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(20, 0, 40, 0.9);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #b400ff;
+    box-shadow: 0 -2px 15px #b400ff;
+    z-index: 999;
+  }
+
+  .bottom-menu a {
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.3s;
+  }
+
+  .bottom-menu a:hover {
+    color: #ff66ff;
+    transform: scale(1.2);
+  }
+
+  .bottom-menu i {
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  /* 🔹 Animation */
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
@@ -202,78 +187,66 @@
 </head>
 <body>
 
-  <nav>
-    <div class="logo"><img src="logo.png" alt="MEDYRA Logo"></div>
-    <div class="hamburger"><i class="fas fa-bars"></i></div>
+  <div class="logo-center">
+    <img src="logo.png" alt="MEDYRA Logo">
+  </div>
 
-    <ul>
-      <li><a id="btn-accueil">Accueil</a></li>
-      <li><a id="btn-serveur">Le serveur</a></li>
-      <li class="dropdown">
-        <a>Modes de jeu ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="https://fortboyardminecraft.github.io/accueil/index.html" target="_blank">🏰 Le Fort</a></li>
-          <li><a href="#">🌆 Visite libre</a></li>
-        </ul>
-      </li>
-      <li><a id="btn-lore">Lore</a></li>
-      <li><a id="btn-equipe">L'équipe</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="admin.html">Admin</a></li>
-    </ul>
-  </nav>
-
-  <section class="hero" id="accueil">
-    <h1>Bienvenue sur 🌊MEDYRA🌊</h1>
+  <section class="hero">
+    <h1>🌊 Bienvenue sur MEDYRA 🌊</h1>
   </section>
 
-  <section class="section" id="serveur">
+  <section class="section">
     <p>
       💫 <strong>Medyra</strong> est un <strong>serveur convivial</strong> rempli d’aventures et de fun ! 💫<br><br>
-      🌍 Explore les incroyables maps inspirées des jeux <strong>"the walking dead" développés par Telltale Games et repris par Skybound Games</strong> 🧟‍♂️,<br>
-      🏰 Participe à des <strong>événements épiques</strong> sur la map de <strong>Fort Boyard</strong> 💪,<br>
-      💬 Détends-toi dans le <strong>Lobby</strong>, rencontre d’autres joueurs et crée-toi une équipe ! 🎮<br><br>
-      ✨ Alors... <strong>rejoins l’aventure dès maintenant !</strong> 🚀
+      🌍 Explore les maps inspirées de <strong>"The Walking Dead"</strong> 🧟‍♂️,<br>
+      🏰 Découvre le mythique <strong>Fort Boyard</strong> 💪,<br>
+      💬 Rejoins la communauté et crée ton équipe ! 🎮
     </p>
+    <a href="https://fortboyardminecraft.github.io/accueil/index.html" target="_blank" class="btn-fort">Explorer le Fort</a>
   </section>
 
-  <section class="section" id="lore">
+  <section class="section">
     <p>
       📜 <strong>L'histoire de Medyra</strong> 🌊<br><br>
-      Le projet <strong>Fort Boyard Minecraft</strong> a vu le jour en <strong>octobre 2020</strong> sur l’édition <strong>PS3</strong>. 🎮  
-      Il connaîtra un petit succès et accueillera ses premiers candidats jusqu’en <strong>2023</strong> 🏰.  
-      Le fort sera ensuite importé sur <strong>Aternos</strong> en tant que <em>version alpha</em> du serveur, enrichi de <strong>plugins</strong> et de versions plus réalistes ⚙️.<br><br>
-      En <strong>2024</strong>, le fort est entièrement <strong>remis à neuf</strong> 🛠️ grâce à des plans à taille réelle, atteignant sa <em>version bêta</em> ✨.<br><br>
-      Aujourd’hui, le fort s’agrandit avec des <strong>maps visite inspirées de "The Walking Dead"</strong>, créées par des <strong>builders talentueux</strong> 🧱.<br><br>
-      💖 <strong>MEDYRA — Enjoy experience.</strong> 💖
+      Né en <strong>2020</strong> sur PS3, <em>Fort Boyard Minecraft</em> est devenu un véritable serveur communautaire.<br>
+      En <strong>2024</strong>, il évolue sous le nom de <strong>MEDYRA</strong>, un monde d’aventures marines inspiré de <em>Médusa</em> 🐍🌊.<br><br>
+      💖 <strong>Enjoy Experience.</strong>
     </p>
   </section>
 
-  <section class="section" id="equipe">
+  <section class="section">
     <h2>👥 Notre Équipe</h2>
     <div class="team-container">
       <div class="team-member">
-        <img src="ppGlooper.jpg" alt="Membre 1">
+        <img src="ppGlooper.jpg" alt="Glooper99">
         <h3>Glooper99</h3>
-        <p>Fondateur du projet</p>
+        <p>Fondateur</p>
       </div>
       <div class="team-member">
-        <img src="ppNatyan.jpeg" alt="Membre 2">
+        <img src="ppNatyan.jpeg" alt="Natyan">
         <h3>Natyan</h3>
-        <p>Co-Fondateur et STAFF</p>
+        <p>Co-Fondateur</p>
       </div>
       <div class="team-member">
-        <img src="pp3.jpg" alt="Membre 3">
+        <img src="pp3.jpg" alt="Arrkey">
         <h3>Arrkey</h3>
-        <p>Encadrement et STAFF</p>
+        <p>Encadrement</p>
       </div>
       <div class="team-member">
-        <img src="pp4.png" alt="Membre 4">
+        <img src="pp4.png" alt="MrBaguette07">
         <h3>MrBaguette07</h3>
         <p>Gestion serveur</p>
       </div>
     </div>
   </section>
+
+  <!-- 🔹 Menu flottant -->
+  <div class="bottom-menu">
+    <a href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
+    <a href="admin.html"><i class="fas fa-lock"></i>Admin</a>
+    <a href="https://discord.gg/tonserveur" target="_blank"><i class="fab fa-discord"></i>Discord</a>
+    <a href="https://www.youtube.com/@toncompte" target="_blank"><i class="fab fa-youtube"></i>YouTube</a>
+  </div>
 
   <div id="overlay" class="overlay">
     <div class="popup">
@@ -284,15 +257,10 @@
   </div>
 
 <script>
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.querySelector('nav ul');
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-  });
-
   function fermerPopup() {
     document.getElementById("overlay").style.display = "none";
   }
 </script>
+
 </body>
 </html>
