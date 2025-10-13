@@ -302,19 +302,22 @@
       color: #fff;
     }
 
-    /* ==== HAMBURGER ==== */
-    .hamburger {
-      display: none;
-      font-size: 30px;
-      cursor: pointer;
-    }
-
     /* === FIX DU MENU HAMBURGER MOBILE === */
 @media (max-width: 1024px) {
   nav {
     position: relative;
     z-index: 1000;
   }
+
+  .hamburger {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 1001;
+  color: white;
+  text-shadow: 0 0 10px #ff00ff;
+}
 
   nav ul {
     display: none;
