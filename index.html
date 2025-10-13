@@ -302,47 +302,6 @@
       color: #fff;
     }
 
-    /* ==== CONTACT FORM ==== */
-    #contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    #contact form input,
-    #contact form textarea {
-      padding: 12px 15px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
-      outline: none;
-    }
-
-    #contact form button {
-      padding: 12px 20px;
-      border-radius: 8px;
-      border: none;
-      font-size: 18px;
-      background: #b400ff;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    #contact form button:hover {
-      background: #ff00ff;
-      box-shadow: 0 0 15px #ff00ff, 0 0 30px #b400ff;
-    }
-
-    #form-success {
-      display: none;
-      color: #ff66ff;
-      margin-top: 15px;
-    }
-
     /* ==== HAMBURGER ==== */
     .hamburger {
       display: none;
@@ -378,6 +337,7 @@
         position: absolute;
         top: 70px;
         left: 0;
+        z-index: 999; /* ✅ permet de s’afficher au-dessus de tout */
       }
 
       nav ul.show {
