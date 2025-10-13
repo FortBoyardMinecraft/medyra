@@ -301,58 +301,6 @@
       font-size: 16px;
       color: #fff;
     }
-
-    /* === FIX DU MENU HAMBURGER MOBILE === */
-@media (max-width: 1024px) {
-  nav {
-    position: relative;
-    z-index: 1000;
-  }
-
-  .hamburger {
-  display: block;
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  z-index: 1001;
-  color: white;
-  text-shadow: 0 0 10px #ff00ff;
-}
-
-  nav ul {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: rgba(30, 0, 60, 0.97);
-    border-top: 1px solid #b400ff;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    z-index: 9999; /* ✅ S'assure que le menu est au-dessus du contenu */
-    animation: slideDown 0.3s ease forwards;
-  }
-
-  nav ul.show {
-    display: flex;
-  }
-
-  nav ul li {
-    text-align: center;
-    padding: 18px 0;
-    width: 100%;
-  }
-
-  nav ul li a {
-    display: block;
-    width: 100%;
-    font-size: 22px;
-    padding: 10px 0;
-  }
-
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
 }
   </style>
 </head>
@@ -524,36 +472,6 @@
         lore.style.display = "none";
         equipe.style.display = "none";
         contact.style.display = "flex";
-      });
-
-      // Menu hamburger
-      hamburger.addEventListener("click", () => {
-        menu.classList.toggle("show");
-      });
-
-      document.querySelectorAll("nav ul li a").forEach(link => {
-  link.addEventListener("click", () => {
-    menu.classList.remove("show");
-  });
-});
-
-      // Formulaire contact
-      const form = document.getElementById("contact-form");
-      const success = document.getElementById("form-success");
-
-      form.addEventListener("submit", function(e){
-        e.preventDefault();
-        const formData = new FormData(form);
-        fetch("save_message.php", {
-          method: "POST",
-          body: formData
-        })
-        .then(res => res.text())
-        .then(() => {
-          success.style.display = "block";
-          form.reset();
-        })
-        .catch(err => console.error(err));
       });
     });
   </script>
