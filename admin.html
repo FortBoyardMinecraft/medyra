@@ -6,59 +6,50 @@
 <title>Admin - MEDYRA</title>
 <link rel="icon" type="image/png" href="logo.png">
 <style>
-  /* ==== FOND ET FILTRE ==== */
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
-    overflow-x: hidden;
-    height: 100vh;
-    background: url('fond.png') no-repeat center center;
-    background-size: cover;
-    position: relative;
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(80,0,120,0.6); /* filtre violet */
-    z-index: -1;
-  }
-
-  /* ==== ANIMATION ==== */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(-30px);
-    animation: fadeIn 1s forwards;
-  }
-  h1 { animation-delay: 0.2s; }
-  #login-section { animation-delay: 0.4s; }
-  #admin-section { animation-delay: 0.6s; }
-
-  @keyframes fadeIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ==== FORMULAIRES ET MESSAGES ==== */
-  input, button { padding: 12px; margin: 10px 0; border-radius: 8px; border: none; width: 250px; max-width: 90%; font-size: 16px; }
-  button { background: black; color: white; cursor: pointer; transition: 0.3s; }
-  button:hover { background: #ff00ff; }
-
-  #messages { margin-top: 30px; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto; }
-  .message { background: rgba(30,0,60,0.85); padding: 15px; border-radius: 10px; margin-bottom: 10px; }
-
-  #login-error { color: #ff6666; }
-
-  /* ==== BOUTON RETOUR ==== */
-  .back-btn {
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: url('fond.png') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+body::before {
+  content: "";
   position: fixed;
-  top: 20px;
-  left: 20px;
-  padding: 12px 25px; /* taille visuelle du bouton */
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(80,0,120,0.6);
+  z-index: -1;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeIn 1s forwards;
+}
+h1 { animation-delay: 0.2s; }
+#login-section { animation-delay: 0.4s; }
+#admin-section { animation-delay: 0.6s; }
+
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+input, button { padding: 12px; margin: 10px 0; border-radius: 8px; border: none; width: 250px; max-width: 90%; font-size: 16px; }
+button { background: black; color: white; cursor: pointer; transition: 0.3s; }
+button:hover { background: #ff00ff; }
+
+#messages { margin-top: 30px; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto; }
+.message { background: rgba(30,0,60,0.85); padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+
+#login-error { color: #ff6666; }
+
+.back-btn {
+  position: fixed;
+  top: 20px; left: 20px;
+  padding: 12px 25px;
   background: rgba(0,0,0,0.8);
   border: 2px solid #b400ff;
   border-radius: 12px;
@@ -71,8 +62,6 @@
   transition: 0.3s;
   z-index: 1000;
 }
-
-/* pseudo-élément pour augmenter la surface cliquable */
 .back-btn::before {
   content: "";
   position: absolute;
@@ -102,41 +91,55 @@
 </div>
 
 <script>
-  const ADMIN_USERNAME = "Glo_Kyr";
-  const ADMIN_PASSWORD = "MedyraFBM33";
-  const ADMIN_CODE = "102020";
+const ADMIN_USERNAME = "Glo_Kyr";
+const ADMIN_PASSWORD = "MedyraFBM33";
+const ADMIN_CODE = "102020";
 
-  const loginBtn = document.getElementById("login-btn");
-  loginBtn.addEventListener("click", () => {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const code = document.getElementById("code").value.trim();
-    const error = document.getElementById("login-error");
+const loginBtn = document.getElementById("login-btn");
+loginBtn.addEventListener("click", () => {
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const code = document.getElementById("code").value.trim();
+  const error = document.getElementById("login-error");
 
-    if(username === ADMIN_USERNAME && password === ADMIN_PASSWORD && code === ADMIN_CODE){
-      document.getElementById("login-section").style.display = "none";
-      document.getElementById("admin-section").style.display = "block";
-      loadMessages();
-    } else {
-      error.textContent = "⚠️ Identifiant, mot de passe ou code incorrect !";
-    }
-  });
-
-  function loadMessages(){
-    const messages = JSON.parse(localStorage.getItem("medyra_messages") || "[]");
-    const container = document.getElementById("messages");
-    container.innerHTML = "";
-    if(messages.length === 0){
-      container.innerHTML = "<p>Aucun message reçu pour le moment.</p>";
-      return;
-    }
-    messages.forEach(msg => {
-      const div = document.createElement("div");
-      div.classList.add("message", "fade-in");
-      div.innerHTML = `<strong>${msg.pseudo}</strong> &lt;${msg.email}&gt; <em>le ${msg.date}</em><br>${msg.message}`;
-      container.appendChild(div);
-    });
+  if(username === ADMIN_USERNAME && password === ADMIN_PASSWORD && code === ADMIN_CODE){
+    document.getElementById("login-section").style.display = "none";
+    document.getElementById("admin-section").style.display = "block";
+    loadMessages();
+  } else {
+    error.textContent = "⚠️ Identifiant, mot de passe ou code incorrect !";
   }
+});
+
+// ⚡ Charge les messages depuis Getform
+function loadMessages(){
+  const container = document.getElementById("messages");
+  container.innerHTML = "<p>Chargement des messages...</p>";
+
+  // Remplace cette URL par ton export JSON Getform
+  const GETFORM_JSON_URL = "https://getform.io/f/{ton-endpoint}/submissions.json";
+
+  fetch(GETFORM_JSON_URL)
+    .then(res => res.json())
+    .then(data => {
+      container.innerHTML = "";
+      if(!data.length){
+        container.innerHTML = "<p>Aucun message reçu pour le moment.</p>";
+        return;
+      }
+
+      data.forEach(msg => {
+        const div = document.createElement("div");
+        div.classList.add("message", "fade-in");
+        div.innerHTML = `<strong>${msg.pseudo || "Anonyme"}</strong> &lt;${msg.email}&gt; <em>le ${new Date(msg.date).toLocaleString()}</em><br>${msg.message}`;
+        container.appendChild(div);
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      container.innerHTML = "<p>Erreur lors du chargement des messages.</p>";
+    });
+}
 </script>
 
 </body>
