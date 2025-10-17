@@ -1,434 +1,956 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>MEDYRA - Gaming</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
 
+
+
   <style>
+
     * {
+
       margin: 0;
+
       padding: 0;
+
       box-sizing: border-box;
-      font-family: 'Bebas Neue', sans-serif;
+
+      font-family: 'Lora', 'Times New Roman', serif;
+
     }
+
+
 
     body {
+
       height: 100vh;
+
       background: url("fond.png") no-repeat center center/cover;
+
       color: white;
+
       overflow-x: hidden;
+
     }
+
+
 
     body::before {
+
       content: "";
+
       position: fixed;
+
       top: 0; left: 0;
+
       width: 100%; height: 100%;
+
       background: rgba(40,0,70,0.7);
+
       z-index: -1;
+
     }
+
+
 
     /* ==== NAVBAR ==== */
+
     nav {
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       padding: 15px 50px;
+
       background: rgba(20, 0, 40, 0.8);
+
       backdrop-filter: blur(10px);
+
       border-bottom: 2px solid #b400ff;
+
+      box-shadow: 0 0 15px #ff00ff;
+
       position: relative;
+
       z-index: 50;
+
     }
+
+
 
     .nav-title {
+
       font-size: 22px;
+
       color: #ffb3ff;
+
+      text-shadow: 0 0 10px #ff00ff;
+
     }
+
+
 
     nav .logo img {
+
       height: 50px;
+
       width: auto;
+
+      filter: drop-shadow(0 0 10px #ff00ff);
+
     }
+
+
 
     nav ul {
+
       list-style: none;
+
       display: flex;
+
       gap: 30px;
+
       align-items: center;
+
     }
+
+
 
     nav ul li a {
+
       text-decoration: none;
+
       color: white;
+
+      text-shadow: 0 0 8px #ff66ff;
+
       transition: 0.3s;
+
       cursor: pointer;
+
     }
+
+
 
     nav ul li a:hover {
+
       color: #ff66ff;
+
+      text-shadow: 0 0 15px #ff00ff;
+
     }
+
+
 
     /* ==== DROPDOWN ==== */
+
     nav ul li.dropdown {
+
       position: relative;
+
     }
+
+
 
     nav ul li.dropdown ul.dropdown-menu {
+
       display: none;
+
       position: absolute;
+
       top: 100%;
+
       left: 0;
+
       background: rgba(30, 0, 60, 0.95);
+
       border: 1px solid #b400ff;
+
       border-radius: 10px;
+
       list-style: none;
+
       padding: 10px 0;
+
       min-width: 180px;
-      font-size: 20px;
+
+      box-shadow: 0 0 20px #ff00ff;
+
+      font-size: 15px;
+
     }
+
+
 
     nav ul li.dropdown:hover ul.dropdown-menu {
+
       display: block;
+
       animation: dropdownFade 0.3s ease forwards;
+
     }
+
+
 
     @keyframes dropdownFade {
+
       from { opacity: 0; transform: translateY(-10px); }
+
       to { opacity: 1; transform: translateY(0); }
+
     }
+
+
 
     /* ==== HERO ==== */
+
     .hero {
+
       display: none;
+
       height: calc(100vh - 80px);
+
       justify-content: center;
+
       align-items: center;
+
       text-align: center;
+
     }
+
+
 
     .hero h1 {
-      font-size: 70px;
+
+      font-size: 50px;
+
       color: white;
+
       opacity: 0;
+
       transform: translateY(-50px);
+
+      text-shadow: 0 0 25px #ff00ff, 0 0 50px #b400ff;
+
       transition: all 1s ease-out;
+
     }
 
+
+
     .hero h1.show {
+
       opacity: 1;
+
       transform: translateY(0);
+
       animation: glow 2s infinite alternate 1s;
+
     }
+
+
+
+    @keyframes glow {
+
+      from { text-shadow: 0 0 20px #ff66ff, 0 0 40px #b400ff; }
+
+      to   { text-shadow: 0 0 40px #ff00ff, 0 0 80px #b400ff; }
+
+    }
+
 
 
     /* ==== POPUP ==== */
+
     .overlay {
+
       position: fixed;
+
       top: 0; left: 0;
+
       width: 100%; height: 100%;
+
       background: rgba(0,0,0,0.7);
+
       display: flex;
+
       justify-content: center;
+
       align-items: center;
+
       visibility: hidden;
+
       opacity: 0;
+
       transition: opacity 0.5s ease;
+
       z-index: 100;
+
     }
+
+
 
     .overlay.show {
+
       visibility: visible;
+
       opacity: 1;
+
     }
+
+
 
     .popup {
+
       background: #200030;
+
       padding: 40px;
+
       border-radius: 20px;
+
       text-align: center;
+
+      box-shadow: 0 0 25px #ff00ff;
+
       color: white;
+
       transform: scale(0.7);
+
       opacity: 0;
+
       animation: popupIn 0.8s ease forwards;
+
     }
+
+
 
     @keyframes popupIn {
+
       0% { transform: scale(0.7); opacity: 0; }
+
       60% { transform: scale(1.05); opacity: 1; }
+
       100% { transform: scale(1); opacity: 1; }
+
     }
+
+
 
     .popup h2 {
+
       font-size: 28px;
+
+      text-shadow: 0 0 15px #ff00ff;
+
     }
+
+
 
     .popup p {
+
       margin-top: 10px;
+
     }
+
+
 
     .popup button {
+
       margin-top: 20px;
+
       padding: 10px 25px;
+
       background: #b400ff;
+
       border: none;
+
       border-radius: 8px;
+
       color: white;
+
       font-size: 18px;
+
       cursor: pointer;
+
       transition: 0.3s;
+
     }
+
+
 
     .popup button:hover {
+
       background: #ff00ff;
+
+      box-shadow: 0 0 15px #ff00ff, 0 0 30px #b400ff;
+
     }
+
+
 
     /* ==== FLOATING ICONS ==== */
+
     .floating-socials {
+
       display: none;
+
       position: fixed;
+
       bottom: 30px;
+
       right: 30px;
+
       flex-direction: column;
+
       gap: 15px;
+
       z-index: 200;
+
     }
+
+
 
     .floating-socials a {
+
       color: white;
+
       font-size: 40px;
+
+      text-shadow: 0 0 10px #ff66ff;
+
       animation: float 2s ease-in-out infinite;
+
       transition: 0.3s;
+
     }
+
+
 
     .floating-socials a:hover {
+
       transform: scale(1.2);
+
     }
+
+
 
     @keyframes float {
+
       0%, 100% { transform: translateY(0); }
+
       50% { transform: translateY(-10px); }
+
     }
 
-    /* ==== SECTION SERVEUR ==== */
+
+
+    /* ==== SECTION SERVEUR / LORE / EQUIPE / CONTACT ==== */
+
     .section {
+
       display: none;
+
       justify-content: center;
+
       align-items: center;
+
       text-align: center;
+
       height: calc(100vh - 80px);
+
       padding: 0 20px;
-      font-size: 28px;
+
+      font-size: 23px;
+
       animation: fadeIn 1s ease;
+
     }
+
+
 
     @keyframes fadeIn {
+
       from { opacity: 0; transform: translateY(20px); }
+
       to { opacity: 1; transform: translateY(0); }
+
     }
+
+
 
     .section p strong {
+
       color: #ff66ff;
+
+      text-shadow: 0 0 15px #ff00ff;
+
     }
 
-    /* ==== HAMBURGER ==== */
-    .hamburger {
-      display: none;
-      font-size: 30px;
-      cursor: pointer;
+
+
+    /* ==== L'EQUIPE ==== */
+
+    #equipe h2, #contact h2 {
+
+      font-size: 32px;
+
+      color: #ff66ff;
+
+      margin-bottom: 30px;
+
+      text-shadow: 0 0 15px #b400ff;
+
     }
 
-    /* ==== RESPONSIVE ==== */
-    @media (max-width: 1024px) {
-      nav {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 15px 20px;
-      }
 
-.nav-title .subtitle {
-  color: #ffccff;
-  font-size: 18px;
-  margin-left: 8px;
+
+    .team-container {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+      gap: 30px;
+
+      width: 100%;
+
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+    }
+
+
+
+    .team-member {
+
+      background: rgba(30,0,60,0.85);
+
+      border-radius: 15px;
+
+      padding: 20px;
+
+      color: white;
+
+      box-shadow: 0 0 20px #ff00ff;
+
+      transition: transform 0.3s, box-shadow 0.3s;
+
+    }
+
+
+
+    .team-member:hover {
+
+      transform: translateY(-5px);
+
+      box-shadow: 0 0 30px #ff66ff;
+
+    }
+
+
+
+    .team-member img {
+
+      width: 120px;
+
+      height: 120px;
+
+      border-radius: 50%;
+
+      object-fit: cover;
+
+      margin-bottom: 15px;
+
+      border: 3px solid #b400ff;
+
+    }
+
+
+
+    .team-member h3 {
+
+      margin-bottom: 5px;
+
+      font-size: 20px;
+
+      color: #ffccff;
+
+    }
+
+
+
+    .team-member p {
+
+      font-size: 16px;
+
+      color: #fff;
+
+    }
+
 }
 
-@media (max-width: 600px) {
-  .nav-title {
-    text-align: center;
-    line-height: 1.1;
-  }
-
-  .nav-title .subtitle {
-    display: block;
-    font-size: 16px;
-    margin-left: 0;
-    margin-top: 4px;
-  }
-}
-
-      .hamburger {
-        display: block;
-        color: white;
-      }
-
-      nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: rgba(30, 0, 60, 0.95);
-        border-top: 1px solid #b400ff;
-        position: absolute;
-        top: 70px;
-        left: 0;
-      }
-
-      nav ul.show {
-        display: flex;
-      }
-
-      .hero h1 { font-size: 40px; }
-      .section { font-size: 20px; }
-    }
-
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 28px; }
-      .section { font-size: 16px; padding: 0 10px; }
-      .popup h2 { font-size: 20px; }
-      .popup p { font-size: 14px; }
-      .popup button { font-size: 14px; padding: 8px 18px; }
-      .floating-socials a { font-size: 28px; }
-      nav ul li.dropdown ul.dropdown-menu li a {
-    font-size: 24px; /* taille plus grande pour mobile */
-    }
   </style>
+
 </head>
 
+
+
 <body>
+
   <nav>
+
     <div class="nav-title">
-  🌸🌺 MEDYRA 🌺🌸 
-  <span class="subtitle">Enjoy experience</span>
-</div>
+
+      🌸🌺 MEDYRA 🌺🌸 
+
+      <span class="subtitle">Enjoy experience</span>
+
+    </div>
+
     <div class="logo"><img src="logo.png" alt="MEDYRA Logo"></div>
-    <div class="hamburger"><i class="fas fa-bars"></i></div>
+
+
 
     <ul>
+
       <li><a id="btn-accueil">Accueil</a></li>
+
       <li><a id="btn-serveur">Le serveur</a></li>
+
       <li class="dropdown">
+
         <a>Modes de jeu ▾</a>
+
         <ul class="dropdown-menu">
+
           <li><a href="https://fortboyardminecraft.github.io/accueil/index.html" target="_blank">🏰 Le Fort</a></li>
+
           <li><a href="#">🌆 Visite libre</a></li>
+
         </ul>
+
       </li>
+
       <li><a id="btn-lore">Lore</a></li>
-      <li><a href="#">L'équipe</a></li>
-      <li><a href="#">Contact</a></li>
+
+      <li><a id="btn-equipe">L'équipe</a></li>
+
+      <li><a href="contact.html">Contact</a></li>
+
+
+      <li><a href="admin.html">Admin</a></li>
+
     </ul>
+
   </nav>
 
+
+
   <section class="hero" id="accueil">
+
     <h1>Bienvenue sur 🌊MEDYRA🌊</h1>
+
   </section>
+
+
 
   <section class="section" id="serveur">
+
     <p>
+
       💫 <strong>Medyra</strong> est un <strong>serveur convivial</strong> rempli d’aventures et de fun ! 💫<br><br>
-      🌍 Explore les incroyables maps inspirées de <strong>"The Walking Dead"</strong> 🧟‍♂️,<br>
+
+      🌍 Explore les incroyables maps inspirées des jeux <strong>"the walking dead" dévellopés par telltale games et repris par skybound games</strong> 🧟‍♂️,<br>
+
       🏰 Participe à des <strong>événements épiques</strong> sur la map de <strong>Fort Boyard</strong> 💪,<br>
+
       💬 Détends-toi dans le <strong>Lobby</strong>, rencontre d’autres joueurs et crée-toi une équipe ! 🎮<br><br>
+
       ✨ Alors... <strong>rejoins l’aventure dès maintenant !</strong> 🚀
+
     </p>
+
   </section>
+
+
 
   <section class="section" id="lore">
+
     <p>
+
       📜 <strong>L'histoire de Medyra</strong> 🌊<br><br>
 
+
+
       Le projet <strong>Fort Boyard Minecraft</strong> a vu le jour en <strong>octobre 2020</strong> sur l’édition <strong>PS3</strong>. 🎮  
+
       Il connaîtra un petit succès et accueillera ses premiers candidats jusqu’en <strong>2023</strong> 🏰.  
+
       Le fort sera ensuite importé sur <strong>Aternos</strong> en tant que <em>version alpha</em> du serveur,  
+
       enrichi de <strong>plugins</strong> et de versions plus réalistes du fort — avec les accès, les escaliers et les cellules d’origine ⚙️.<br><br>
 
+
+
       En <strong>2024</strong>, le fort est entièrement <strong>remis à neuf</strong> 🛠️ grâce à des plans à taille réelle  
+
       et aux cellules officielles de chaque saison, atteignant sa <em>version bêta</em> ✨.<br><br>
 
-      Aujourd’hui, le fort s’agrandit avec des <strong>maps visite The Walking Dead</strong> créées par des <strong>builders talentueux</strong> 🧱.  
+
+
+      Aujourd’hui, le fort s’agrandit avec des <strong>maps visite inspirés de "the walking dead" dévellopés par telltale games et repris par skybound games</strong>, créées par des <strong>builders talentueux</strong> 🧱.  
+
       Le serveur devient alors public sous le nom de <strong>MEDYRA</strong> — inspiré de <em>Médusa</em>,  
+
       la créature mythologique marine 🐍🌊.<br><br>
 
+
+
       Hébergé chez <strong>SeaPalm</strong> 🌐 et <strong>partenaire</strong> du serveur numéro 1 en France  
+
       pour Fort Boyard Minecraft, <strong>Britania</strong> 🇫🇷💪,<br>
+
       nous espérons que <strong>Medrya</strong> vous plaira et que vous <strong>apprécierez l’expérience</strong> 💫.<br><br>
 
+
+
       <em>"Ce qui compte, ce n’est pas le résultat, mais la distance parcourue."</em><br><br>
+
       💖 <strong>MEDYRA — Enjoy experience.</strong> 💖
+
     </p>
+
   </section>
 
-  <div id="overlay" class="overlay">
-    <div class="popup">
-      <h2>Bienvenue sur MEDYRA</h2>
-      <p>Site en construction ⚡</p>
-      <button onclick="fermerPopup()">Entrer</button>
+
+
+  <section class="section" id="equipe">
+
+    <h2>👥 Notre Équipe</h2>
+
+    <div class="team-container">
+
+      <div class="team-member">
+
+        <img src="ppGlooper.jpg" alt="Membre 1">
+
+        <h3>Glooper99</h3>
+
+        <p>fondateur du projet </p>
+
+      </div>
+
+      <div class="team-member">
+
+        <img src="ppNatyan.jpeg" alt="Membre 2">
+
+        <h3>Natyan</h3>
+
+        <p>Co-Fondateur et STAFF </p>
+
+      </div>
+
+      <div class="team-member">
+
+        <img src="pp3.jpg" alt="Membre 2">
+
+        <h3>Arrkey</h3>
+
+        <p>Encadrement et STAFF </p>
+
+      </div>
+
+      <div class="team-member">
+
+        <img src="pp4.png" alt="Membre 2">
+
+        <h3>MrBaguette07</h3>
+
+        <p>gestion serveur</p>
+
+      </div>
+
     </div>
+
+  </section>
+
+
+
+  <div id="overlay" class="overlay">
+
+    <div class="popup">
+
+      <h2>Bienvenue sur MEDYRA</h2>
+
+      <p>Site en construction ⚡</p>
+
+      <button onclick="fermerPopup()">Entrer</button>
+
+    </div>
+
   </div>
+
+
 
   <div class="floating-socials">
+
     <a href="https://www.youtube.com/@leNath_officiel" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+
     <a href="https://discord.gg/EaGYdfAQ" target="_blank" class="discord"><i class="fab fa-discord"></i></a>
+
   </div>
 
+
+
   <script>
+
     document.addEventListener("DOMContentLoaded", () => {
+
       const overlay = document.getElementById("overlay");
+
       const hero = document.getElementById("accueil");
+
       const serveur = document.getElementById("serveur");
+
       const lore = document.getElementById("lore");
+
+      const equipe = document.getElementById("equipe");
+
+      const contact = document.getElementById("contact");
+
       const heroTitle = document.querySelector(".hero h1");
+
       const floatingIcons = document.querySelector(".floating-socials");
+
       const menu = document.querySelector("nav ul");
+
       const hamburger = document.querySelector(".hamburger");
 
+
+
       // Affiche la popup au démarrage
+
       overlay.classList.add("show");
 
+
+
       // Ferme la popup et affiche la page d'accueil
+
       window.fermerPopup = function() {
+
         overlay.classList.remove("show");
+
         hero.style.display = "flex";
-        setTimeout(() => heroTitle.classList.add("show"), 300); // apparition douce du texte
+
+        setTimeout(() => heroTitle.classList.add("show"), 300);
+
         floatingIcons.style.display = "flex";
+
       };
 
+
+
       // Navigation
-document.getElementById("btn-accueil").addEventListener("click", () => {
-  hero.style.display = "flex";
-  serveur.style.display = "none";
-  lore.style.display = "none";
-});
 
-document.getElementById("btn-serveur").addEventListener("click", () => {
-  hero.style.display = "none";
-  serveur.style.display = "flex";
-  lore.style.display = "none";
-});
+      document.getElementById("btn-accueil").addEventListener("click", () => {
 
-document.getElementById("btn-lore").addEventListener("click", () => {
-  hero.style.display = "none";
-  serveur.style.display = "none";
-  lore.style.display = "flex";
-});
+        hero.style.display = "flex";
 
-      // Menu hamburger
-      hamburger.addEventListener("click", () => {
-        menu.classList.toggle("show");
+        serveur.style.display = "none";
+
+        lore.style.display = "none";
+
+        equipe.style.display = "none";
+
+        contact.style.display = "none";
+
       });
+
+
+
+      document.getElementById("btn-serveur").addEventListener("click", () => {
+
+        hero.style.display = "none";
+
+        serveur.style.display = "flex";
+
+        lore.style.display = "none";
+
+        equipe.style.display = "none";
+
+        contact.style.display = "none";
+
+      });
+
+
+
+      document.getElementById("btn-lore").addEventListener("click", () => {
+
+        hero.style.display = "none";
+
+        serveur.style.display = "none";
+
+        lore.style.display = "flex";
+
+        equipe.style.display = "none";
+
+        contact.style.display = "none";
+
+      });
+
+
+
+      document.getElementById("btn-equipe").addEventListener("click", () => {
+
+        hero.style.display = "none";
+
+        serveur.style.display = "none";
+
+        lore.style.display = "none";
+
+        equipe.style.display = "flex";
+
+        contact.style.display = "none";
+
+      });
+
+
+
+      document.getElementById("btn-contact").addEventListener("click", () => {
+
+        hero.style.display = "none";
+
+        serveur.style.display = "none";
+
+        lore.style.display = "none";
+
+        equipe.style.display = "none";
+
+        contact.style.display = "flex";
+
+      });
+
     });
+
   </script>
+
 </body>
+
 </html>
