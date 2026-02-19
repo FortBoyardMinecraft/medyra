@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medyra Entertainment</title>
+
+<link rel="icon" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+
+<style>
+
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Quantico',sans-serif;
+}
+
+body{
+  overflow:hidden;
+}
+
+/* ===== HERO ===== */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+
+  background-image:url('images/fond.png');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+}
+
+/* ===== HEADER TOP ===== */
+.top-brand{
+  position:absolute;
+  top:40px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  text-align:center;
+}
+
+.top-brand img{
+  width:200px;
+  margin-bottom:10px;
+}
+
+.top-brand h2{
+  color:white;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+/* ===== HERO TEXT ===== */
+.hero h1{
+  position:relative;
+  z-index:2;
+  color:white;
+  font-size:3rem;
+  margin-bottom:30px;
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+
+.hero h1.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ===== SOCIAL ICONS ===== */
+.hero-icons{
+  display:flex;
+  gap:35px;
+  margin-bottom:40px;
+  z-index:2;
+}
+
+.hero-icons a{
+  font-size:55px;
+  color:white;
+  transition:0.4s;
+}
+
+.hero-icons a:hover{
+  transform:rotate(45deg);
+  color:#333;
+}
+
+/* ===== HUB MENU ===== */
+.hub-menu{
+  z-index:2;
+  padding:35px 45px;
+  border-radius:20px;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  color:white;
+  opacity:0;
+  transform:translateY(20px);
+  transition:1s;
+}
+
+.hub-menu.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.hub-menu h3{
+  margin-bottom:25px;
+  font-weight:700;
+}
+
+/* ===== HUB BUTTONS ===== */
+.hub-buttons{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.hub-buttons a{
+  padding:14px 28px;
+  border-radius:10px;
+  text-decoration:none;
+  color:white;
+  border:2px solid #FFD700;
+  transition:0.3s;
+  font-size:0.95rem;
+}
+
+.hub-buttons a:hover{
+  background:#FFD700;
+  color:black;
+  transform:translateY(-3px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero h1{ font-size:2rem; }
+  .hub-buttons{ flex-direction:column; }
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+  <!-- LOGO + NOM -->
+  <div class="top-brand">
+    <img src="images/logo.png">
+  </div>
+
+  <!-- SLOGAN -->
+  <h1 id="hero-text">Medyra Associates</h1>
+
+  <!-- SOCIAL -->
+  <div class="hero-icons">
+    <a href="https://discord.gg/EaGYdfAQ" target="_blank"><i class="fab fa-discord"></i></a>
+    <a href="https://www.youtube.com/@leNath_officiel" target="_blank"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <!-- HUB NAV -->
+  <div class="hub-menu" id="hub-menu">
+    <h2>HUB</h2>
+    <h3>Où voulez-vous aller ?</h3>
+
+    <div class="hub-buttons">
+      <a href="minecraft.html">Minecraft</a>
+      <a href="studio.html">Studio</a>
+      <a href="lore.html">Lore</a>
+      <a href="team.html">L'équipe</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+window.addEventListener('load',()=>{
+  document.getElementById('hero-text').classList.add('show');
+  document.getElementById('hub-menu').classList.add('show');
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Medyra Associates</title>
+
+<link rel="icon" href="images/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+
+<style>
+
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Quantico',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:url('images/fond.png') center/cover fixed;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  position:relative;
+}
+
+body::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+}
+
+/* ===== CONTAINER ===== */
+.contact-box{
+  position:relative;
+  z-index:2;
+  width:90%;
+  max-width:700px;
+  padding:50px;
+  border-radius:20px;
+  backdrop-filter:blur(14px);
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  text-align:center;
+  animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+  margin-bottom:15px;
+  letter-spacing:2px;
+}
+
+.subtitle{
+  opacity:0.8;
+  margin-bottom:35px;
+}
+
+/* ===== CONTACT ITEMS ===== */
+.contact-list{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  margin-bottom:35px;
+}
+
+.contact-item{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  font-size:1.1rem;
+}
+
+.contact-item i{
+  font-size:1.4rem;
+  color:#FFD700;
+}
+
+/* ===== SOCIAL BUTTONS ===== */
+.socials{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
+
+.socials a{
+  padding:12px 22px;
+  border-radius:10px;
+  border:2px solid #FFD700;
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.socials a:hover{
+  background:#FFD700;
+  color:black;
+  transform:translateY(-3px);
+}
+
+/* ===== BACK BUTTON ===== */
+.back{
+  display:inline-block;
+  padding:12px 25px;
+  border-radius:10px;
+  border:2px solid white;
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.back:hover{
+  background:white;
+  color:black;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contact-box">
+
+  <h1>Contact</h1>
+  <div class="subtitle">Restons connectés avec Medyra Associates</div>
+
+  <div class="contact-list">
+    <div class="contact-item">
+      <i class="fas fa-envelope"></i>
+      contact.medyra@gmail.com
+    </div>
+  </div>
+
+  <div class="socials">
+    <a href="https://discord.gg/EaGYdfAQ" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+    <a href="https://www.instagram.com/collectif.medyra/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.youtube.com/@leNath_officiel" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+    <a href="https://www.twitch.tv/le_nath_" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
+  </div>
+
+  <a href="index.html" class="back">Retour au HUB</a>
+
+</div>
+
+</body>
+</html>

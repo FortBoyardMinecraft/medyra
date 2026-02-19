@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medyra Minecraft</title>
+
+<link rel="icon" href="../logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+<style>
+:root{ --accent:#FF7F00; }
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Quantico',sans-serif;
+}
+
+html,body{
+height:100vh;
+overflow:hidden;
+background:#111;
+color:white;
+}
+
+/* NAVBAR */
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:9px 50px;
+background:black;
+border-bottom:3px solid var(--accent);
+z-index:20;
+transition:.4s;
+}
+nav.hide{ top:-120px; opacity:0; }
+
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+}
+.logo img{ height:70px; }
+.logo span{ font-size:1.5rem; font-weight:700; }
+
+nav ul{
+list-style:none;
+display:flex;
+gap:30px;
+}
+nav a{
+color:white;
+text-decoration:none;
+cursor:pointer;
+}
+nav a:hover{ color:var(--accent); }
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
+background:url('images/fond2.png') center/cover fixed;
+}
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
+}
+
+.hero-content{
+display:flex;
+flex-direction:column;
+align-items:center;
+z-index:2;
+transform:translateY(-120px);
+}
+
+.hero-logo{
+width:250px;
+margin-bottom:30px;
+opacity:0;
+transform:translateY(-20px) scale(.9);
+transition:1s;
+}
+.hero-logo.show{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
+#wave-text{
+font-family:'VT323', monospace !important;
+letter-spacing:2px;
+font-size:4rem;
+}
+
+#wave-text span{
+display:inline-block;
+animation:wave 2s ease-in-out infinite;
+font-family:'VT323', monospace !important;
+}
+@keyframes wave{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-25px);}
+}
+
+/* BOUTON RETOUR HUB */
+.btn-hub{
+  position:absolute; bottom:30px; left:30px;
+  padding:12px 25px; background:black; color:#fff; font-weight:700;
+  text-decoration:none; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:3;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.btn-hub:hover{ transform:translateY(-3px); background: var(--accent); }
+
+/* SECTIONS */
+.section{
+display:none;
+height:100vh;
+width:100%;
+padding:120px 40px 40px;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:url('images/fond2.png') center/cover;
+position:relative;
+}
+.section::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
+}
+
+.section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.content{
+position:relative;
+z-index:2;
+max-width:900px;
+}
+
+/* PRESENTATION */
+.presentationBox{
+background:rgba(0,0,0,0.75);
+padding:40px;
+border-radius:12px;
+line-height:1.8;
+}
+.presentationBox h2{
+color:var(--accent);
+margin-bottom:20px;
+}
+.quote{
+margin-top:20px;
+color:var(--accent);
+font-style:italic;
+}
+.signature{
+margin-top:20px;
+font-weight:bold;
+}
+
+/* PROJECT GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:30px;
+}
+
+.project-card{
+background:rgba(0,0,0,0.7);
+padding: 20px;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+text-align:center;
+max-width: 300px;
+margin: 0 auto;   
+}
+.project-card:hover{ transform:translateY(-5px); }
+.project-card img{
+width:100%;
+border-radius:8px;
+margin-bottom:10px;
+height: 120px;
+}
+
+/* POPUP */
+#projectPopup{
+position:fixed;
+inset:0;
+display:none;
+z-index:100;
+}
+
+#popupBackground{
+position:absolute;
+inset:0;
+background-size:cover;
+background-position:center;
+}
+
+#popupOverlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.75);
+}
+
+#popupContent{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%, -50%);
+
+width:75%;
+max-width:1100px;
+min-height:520px;
+
+background:rgba(0,0,0,0.92);
+padding:40px;
+border-radius:14px;
+
+box-shadow:0 0 60px rgba(0,0,0,0.8);
+}
+
+#popupClose{
+margin-top:20px;
+padding:10px 18px;
+background:var(--accent);
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.popupTop{
+display:flex;
+gap:40px;
+align-items:flex-start;
+margin-top:25px;
+}
+
+.videoBlock{
+width:60%;
+}
+
+.videoTitle{
+margin-bottom:10px;
+color:var(--accent);
+}
+
+#popupVideo{
+width:100%;
+height:300px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.projectText{
+width:50%;
+line-height:1.7;
+font-size:1rem;
+}
+
+.projectText strong{
+color:var(--accent);
+}
+
+.highlight{
+margin-top:10px;
+font-weight:bold;
+font-size:1.1rem;
+}
+
+.participation{
+margin-top:25px;
+padding-top:20px;
+border-top:1px solid rgba(255,255,255,0.2);
+}
+
+.videoBtn{
+margin-top:10px;
+padding:10px 20px;
+background:var(--accent);
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+<div class="logo">
+<img src="images/logoMC.png">
+<span>DreamLines</span>
+</div>
+<ul>
+<li><a id="btn-hero">Accueil</a></li>
+<li><a id="btn-about">Présentation</a></li>
+<li><a id="btn-projects">Projets</a></li>
+<li><a id="btn-services">Services</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+<div class="hero-content">
+<img src="images/logoMC.png" class="hero-logo" id="heroLogo">
+<h1 id="wave-text">Bienvenue sur le serveur Minecraft DreamLines</h1>
+</div>
+<a href="index.html" class="btn-hub">Retour Hub</a>
+</section>
+
+<!-- PRESENTATION -->
+<section class="section" id="about">
+<div class="content">
+
+<div class="presentationBox">
+
+<h2>L'histoire de DreamLines</h2>
+
+<p>
+Le projet <strong>Fort Boyard Minecraft</strong> a vu le jour en octobre 2020 sur l’édition PS3.
+Il connaîtra un petit succès et accueillera ses premiers candidats jusqu’en 2023.
+</p>
+
+<p>
+Le fort sera ensuite importé sur <strong>Aternos</strong> en tant que version alpha du serveur,
+enrichi de plugins et de versions plus réalistes du fort — avec les accès,
+les escaliers et les cellules d’origine.
+</p>
+
+<p>
+En <strong>2024</strong>, le fort est entièrement remis à neuf grâce à des plans à taille réelle
+et aux cellules officielles de chaque saison, atteignant sa version <strong>bêta</strong>.
+</p>
+
+<p>
+Le serveur devient alors public sous le nom de <strong>DreamLines</strong>,
+</p>
+
+Hébergé chez <strong>SeaPalm</strong> et partenaire du serveur numéro 1 en France
+pour Fort Boyard Minecraft, <strong>Britania</strong>,
+nous espérons que Medyra vous plaira et que vous apprécierez l’expérience.
+</p>
+
+<div class="quote">
+"Ce qui compte, ce n’est pas le résultat, mais la distance parcourue."
+</div>
+
+<div class="signature">
+Medyra.Associates — One Team, One Adventure
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PROJETS -->
+<section class="section" id="projects">
+<div class="content">
+
+<h2 style="white; font-size:4rem;">Projets</h2>
+
+<div class="grid">
+
+<div class="project-card"
+data-title="Fort Boyard Minecraft"
+data-video="images/fort.mp4">
+
+<img src="images/fondfort.png">
+<h3>Fort Boyard Minecraft</h3>
+
+</div>
+
+<div id="projectPopup">
+
+<div id="popupBackground"></div>
+<div id="popupOverlay"></div>
+
+<div id="popupContent">
+
+<h2 id="popupTitle"></h2>
+
+<div class="popupTop">
+
+<div class="videoBlock">
+<h3 class="videoTitle">Présentation du fort</h3>
+<video id="popupVideo" controls></video>
+</div>
+
+<div class="projectText">
+
+<p><strong>Bonjour à tous et à toutes</strong></p>
+
+<p>
+et bienvenue sur le site du <strong>Projet Fort Boyard Minecraft Vanilla</strong> !
+Un serveur dédié à des émissions Fort Boyard sur Minecraft sans mods
+pour offrir une expérience de jeu optimale et accessible à tous les joueurs.
+</p>
+
+<p>
+Un fort Boyard amélioré chaque année avec des techniques uniques adaptées
+au serveur Vanilla, mais aussi une passion transmise dans sa construction
+et dans les tournages avec les différents joueurs !
+</p>
+
+<p class="highlight">
+Tentez l'aventure Fort Boyard Minecraft dès maintenant !
+</p>
+
+</div>
+</div>
+
+<div class="participation">
+<h3>Participation</h3>
+<p>
+10 février 2025 — Équipe : <strong>Médecins du Monde</strong><br>
+Participants : <strong>Benos18, FDA_Dom</strong><br>
+Argent récolté : <strong>1880 Boyards</strong>
+</p>
+
+<button class="videoBtn">Voir la vidéo</button>
+</div>
+
+<button id="popupClose">Retour</button>
+
+</div>
+</div>
+
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+<div class="content">
+<h2 style="color:var(--accent);">Services</h2>
+<p>pas de service pour le moment</p>
+</div>
+</section>
+<script>
+/* NAVBAR */
+let prevScroll=window.pageYOffset;
+const navbar=document.getElementById("navbar");
+window.onscroll=()=>{
+let current=window.pageYOffset;
+if(prevScroll>current) navbar.classList.remove("hide");
+else navbar.classList.add("hide");
+prevScroll=current;
+};
+
+/* HERO */
+window.addEventListener('load',()=>{
+document.getElementById("heroLogo").classList.add("show");
+
+const wave=document.getElementById("wave-text");
+const text=wave.textContent;
+wave.textContent="";
+for(let i=0;i<text.length;i++){
+const span=document.createElement("span");
+span.textContent=text[i];
+span.style.animationDelay=i*0.1+"s";
+if(text[i]==" ") span.style.width="0.5em";
+wave.appendChild(span);
+}
+});
+
+/* SECTIONS */
+const sections={
+"btn-hero":hero,
+"btn-about":about,
+"btn-projects":projects,
+"btn-services":services
+};
+Object.keys(sections).forEach(id=>{
+document.getElementById(id).onclick=()=>{
+Object.values(sections).forEach(s=>s.style.display="none");
+sections[id].style.display="flex";
+};
+});
+hero.style.display="flex";
+
+/* POPUP */
+const popup=document.getElementById("projectPopup");
+const bg=document.getElementById("popupBackground");
+const title=document.getElementById("popupTitle");
+const desc=document.getElementById("popupDesc");
+
+document.querySelectorAll(".project-card").forEach(card=>{
+card.onclick=()=>{
+bg.style.backgroundImage=`url(${card.dataset.image})`;
+title.textContent=card.dataset.title;
+desc.innerHTML=card.dataset.description;
+popup.style.display="block";
+};
+});
+
+const video=document.getElementById("popupVideo");
+
+document.querySelectorAll(".project-card").forEach(card=>{
+card.onclick=()=>{
+
+bg.style.backgroundImage=`url(${card.dataset.image || "images/fond2.png"})`;
+
+title.textContent=card.dataset.title;
+video.src=card.dataset.video;
+
+popup.style.display="block";
+};
+});
+
+popupClose.onclick=()=>{
+popup.style.display="none";
+video.pause();
+video.currentTime=0;
+};
+
+popupClose.onclick=()=>popup.style.display="none";
+
+document.querySelector(".videoBtn").onclick = () => {
+  window.open("https://www.youtube.com/watch?v=Z7dA8pYxplw&t", "_blank");
+};
+</script>
+
+</body>
+</html>
