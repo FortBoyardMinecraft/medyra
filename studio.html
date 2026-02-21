@@ -62,46 +62,123 @@ nav ul li a:hover{ color:var(--accent); cursor:pointer; }
 
 /* SECTIONS */
 .section{
-  display:none; height:100vh; width:100%; padding:0 40px; text-align:center;
-  justify-content:center; align-items:center; flex-direction:column; display:flex;
-  background-image:url('images/fond3.png'); background-size:cover; background-position:center; position:relative;
+display:none;
+min-height:100vh;
+padding:120px 20px 60px;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:url('images/fond3.png') center/cover;
+position:relative;
 }
+
 .section::after{
-  content:""; position:absolute; inset:0; background:rgba(0,0,0,0.45); z-index:0;
-}
-.section .content{ z-index:2; max-width:900px; opacity:0; transform:translateY(20px); transition:1s; }
-.section.show .content{ opacity:1; transform:translateY(0); }
-.section h2{ margin-bottom:25px; color:var(--accent); }
-.section p{ line-height:1.7; }
-
-/* Fond noir semi-transparent derrière le texte */
-.section#about .text-container {
-  background: rgba(0, 0, 0, 0.7); /* noir avec 70% d'opacité */
-  padding: 30px 40px;
-  border-radius: 12px;
-  max-width: 900px;
-  margin: 0 auto; /* centrer horizontalement */
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
 }
 
-/* Texte présentation */
-.section#about .text-container p {
-  font-size: 1.35rem;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  color: #f0f0f0;
-  text-align: justify;
+.content{
+position:relative;
+z-index:2;
+max-width:1000px;
+width:100%;
 }
 
-.section#about .text-container strong {
-  color: var(--accent);
+/* ===== ANIMATION APPARITION SECTIONS ===== */
+
+.section .content{
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s ease;
 }
 
-.section#about .text-container em {
-  font-style: italic;
-  font-size: 0.9rem;
-  color: #ccc;
-  display: block;
-  margin-top: 15px;
+.section.show .content{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.quote{
+margin-top:25px;
+color:var(--accent);
+font-weight:700;
+font-size:1.15rem;
+letter-spacing:0.5px;
+}
+
+.signature{
+margin-top:15px;
+font-style:italic;
+opacity:.85;
+}
+
+.section.show .quote{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.4s;
+}
+
+.section.show .signature{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.6s;
+}
+
+.sectionTitle{
+text-align:center;
+font-size:3rem;
+margin-bottom:40px;
+color:white;
+letter-spacing:2px;
+}
+
+
+/* =========================
+GRID PROJETS
+========================= */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,260px));
+gap:25px;
+margin-top:30px;
+justify-content:center;
+}
+
+.project-card{
+background:rgba(0,0,0,0.7);
+padding:15px;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+text-align:center;
+width:100%;
+}
+.project-card:hover{
+transform:translateY(-6px) scale(1.03);
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+}
+
+.project-card img{
+width:100%;
+height:140px;
+object-fit:cover;
+border-radius:8px;
+margin-bottom:10px;
+}
+/* =========================
+PRESENTATION BOX
+========================= */
+.presentationBox{
+background:rgba(0,0,0,0.75);
+padding:30px;
+border-radius:12px;
+line-height:1.8;
+}
+
+.presentationBox h2{
+color:var(--accent);
+margin-bottom:20px;
 }
 
 /* Grille projet */
@@ -167,15 +244,12 @@ nav ul li a:hover{ color:var(--accent); cursor:pointer; }
 }
 
 #popupClose {
-  display: inline-block;
-  padding: 10px 20px;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 700;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: 0.3s;
-  margin-top: 200px; /* espace supplémentaire au-dessus du bouton */
+  align-self:flex-start;
+  padding:10px 20px;
+  border-radius:8px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.25s;
 }
 
 #popupClose:hover { background:#007bb5; }
@@ -193,11 +267,6 @@ nav ul li a:hover{ color:var(--accent); cursor:pointer; }
   margin-top: 0;          /* remonte le titre vers le haut */
   color: white;
 }
-
-/* CARDS */
-.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px; margin-top:30px; }
-.card{ border:1px solid #ddd; border-radius:12px; padding:25px; transition:.3s; background:rgba(0,0,0,0.6); color:white; }
-.card:hover{ transform:translateY(-5px); box-shadow:0 0 20px rgba(0,0,0,1); }
 
 /* RESPONSIVE */
 @media(max-width:768px){
@@ -235,7 +304,7 @@ nav ul li a:hover{ color:var(--accent); cursor:pointer; }
 <!-- PRESENTATION -->
 <section class="section" id="about" style="background-image:url('images/fond3.png');">
   <div class="content">
-    <div class="text-container">
+    <div class="presentationBox">
       <h2>Presentation</h2>
       <p>
         Bienvenue dans l'espace Studio de <strong>Medyra Associates</strong>, un onglet permettant de présenter nos projets vidéos et cinéma, et un espace permettant à vous, le public, de donner votre avis sur les différents projets mis en avant sur le site.
@@ -244,15 +313,19 @@ nav ul li a:hover{ color:var(--accent); cursor:pointer; }
         Avec nos associés, nous travaillons chaque année pour vous proposer du contenu de qualité sur nos différents réseaux sociaux comme 
         <a href="https://www.youtube.com/@OneTeam.OneAdventure" target="_blank"><strong>YouTube</strong></a>, 
         <a href="https://www.twitch.tv/le_nath_" target="_blank"><strong>Twitch</strong></a> ou 
-        <a href="https://www.instagram.com/association.medyra/" target="_blank"><strong>Instagram</strong></a>, mais également des projets cinéma tels que des films ou des mini-séries.
+        <a href="https://www.instagram.com/collectif.medyra/" target="_blank"><strong>Instagram</strong></a>, mais également des projets cinéma tels que des films ou des mini-séries.
       </p>
       <p>
         Il est primordial pour nous de vous donner l'opportunité d'avoir un droit de regard sur nos productions afin que vous vous sentiez impliqués dans nos projets.
       </p>
       <p>
-        Merci à tous pour votre compréhension et en vous souhaitant une bonne aventure chez nous.<br>
-        <em>Guilbert Nathaniel / Directeur général Medyra Associates / © Medyra.Associates, One Team, One Adventure</em>
-      </p>
+<div class="quote">
+"Merci à tous pour votre compréhension et en vous souhaitant une bonne aventure chez nous."
+</div>
+
+<div class="signature">
+Guilbert Nathaniel / Directeur général Medyra Associates / © Medyra.Associates, One Team, One Adventure
+</div>
     </div>
   </div>
 </section>
@@ -262,7 +335,7 @@ nav ul li a:hover{ color:var(--accent); cursor:pointer; }
     <h2>Projets</h2>
     <div class="grid">
       <!-- Projet Our Endless Nights -->
-      <div class="card project-card" 
+      <div class="project-card" 
            data-title="Our Endless Nights" 
            data-description="... (description en HTML)" 
            data-image="images/projet1.png"
