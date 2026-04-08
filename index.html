@@ -2,185 +2,146 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Medyra Entertainment</title>
 
-<link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
-<link rel="apple-touch-icon" href="images/logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+<link rel="icon" type="image/png" href="images/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
 <style>
 
-/* ===== RESET ===== */
+/* RESET */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Quantico',sans-serif;
+  font-family:'Playfair Display',sans-serif;
 }
 
 body{
   min-height:100vh;
-  overflow-x:hidden; /* seulement horizontal */
+  color:white;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.navbar img{
+  width:50px;
+}
+
+.nav-links{
+  display:flex;
+  gap:20px;
+}
+
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  border:1px solid #C0C0C0;
+  padding:8px 15px;
+  border-radius:8px;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  background:white;
+  color:black;
 }
 
 /* ===== HERO ===== */
 .hero{
   min-height:100vh;
-  padding:120px 20px 60px 20px; /* espace top + bas mobile */
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   text-align:center;
-  position:relative;
+  padding:120px 20px 100px;
 
-  background-image:url('images/fond.png');
-  background-size:cover;
-  background-position:center;
+  background:url('images/fond.png') center/cover;
+  position:relative;
 }
 
-/* overlay */
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0.45);
+  background:rgba(0,0,0,0.5);
 }
 
-/* ===== HEADER TOP ===== */
-.top-brand{
-  position:absolute;
-  top:25px;
-  left:50%;
-  transform:translateX(-50%) translateY(-20px);
-  z-index:2;
-  text-align:center;
-
-  opacity:0;
-  transition:1s ease;
-}
-
-.top-brand.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
-
-.top-brand img{
-  width:180px;
-  max-width:60vw;
-}
-
-/* ===== HERO TEXT ===== */
-.hero h1{
+.hero-content{
   position:relative;
   z-index:2;
-  color:white;
-  font-size:clamp(1.8rem, 4vw, 3rem);
+  max-width:700px;
+}
+
+/* GRAND LOGO */
+.hero-logo{
+  width:220px;
   margin-bottom:30px;
-
-  opacity:0;
-  transform:translateY(40px) scale(0.95);
-  transition: opacity 1s ease, transform 1s ease;
 }
 
-.hero h1.show{
-  opacity:1;
-  transform:translateY(0) scale(1);
+/* LORE */
+.hero h1{
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  margin-bottom:20px;
 }
 
-/* ===== SOCIAL ICONS ===== */
-.hero-icons{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:30px;
-  margin-bottom:40px;
+.hero p{
+  font-size:1.1rem;
+  opacity:0.9;
+}
+
+/* ===== CONTACT BUTTON ===== */
+.contact-btn{
+  position:absolute;
+  bottom:30px;
   z-index:2;
 }
 
-.hero-icons a{
-  font-size:clamp(32px,6vw,55px);
-  color:white;
-  transition: transform 0.4s ease, color 0.4s ease;
-}
-
-.hero-icons a:hover{
-  transform:rotate(12deg) scale(1.15);
-  color:#FFD700;
-}
-/* ===== HUB MENU ===== */
-.hub-menu{
-  z-index:2;
-  padding:30px 25px;
-  border-radius:20px;
-  backdrop-filter:blur(12px);
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.2);
-  color:white;
-  width:100%;
-  max-width:600px;
-
-  opacity:0;
-  transform:translateY(40px) scale(0.95);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.hub-menu.show{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
-
-/* ===== HUB BUTTONS ===== */
-.hub-buttons{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
-.hub-buttons a{
-  padding:12px 22px;
+.contact-btn a{
+  padding:12px 25px;
   border-radius:10px;
   text-decoration:none;
   color:white;
-  border:2px solid #FFD700;
-  font-size:0.95rem;
-  flex:1 1 160px;
-  text-align:center;
-
-  transition: all 0.3s ease;
+  border:2px solid #C0C0C0;
+  transition:0.3s;
 }
 
-.hub-buttons a:hover{
-  background:#FFD700;
+.contact-btn a:hover{
+  background:white;
   color:black;
-  transform:translateY(-4px) scale(1.05);
-  box-shadow:0 10px 25px rgba(255,215,0,0.35);
+  transform:scale(1.05);
 }
 
-/* ===== MOBILE ===== */
+/* MOBILE */
 @media(max-width:768px){
 
-  .hero{
-    padding-top:140px;
+  .nav-links{
+    gap:10px;
   }
 
-  .top-brand img{
-    width:140px;
+  .nav-links a{
+    padding:6px 10px;
+    font-size:0.8rem;
   }
 
-  .hero-icons{
-    gap:20px;
-  }
-
-  .hub-buttons{
-    flex-direction:column;
-  }
-
-  .hub-buttons a{
-    width:100%;
+  .hero-logo{
+    width:160px;
   }
 
 }
@@ -190,46 +151,66 @@ body{
 
 <body>
 
+<!-- NAVBAR -->
+<div class="navbar">
+  <img src="images/logo.png" alt="logo">
+  <div class="nav-links">
+    <a href="studio.html">Studio</a>
+    <a href="minecraft.html">Minecraft</a>
+    <a href="team.html">L'équipe</a>
+  </div>
+</div>
+
+<!-- HERO -->
 <section class="hero">
 
-  <!-- LOGO + NOM -->
-  <div class="top-brand">
-    <img src="images/logo.png">
+  <div class="hero-content">
+    <img src="images/logo.png" class="hero-logo">
+
+<h1>Notre Histoire</h1>
+
+<p>
+Medyra Associates est avant tout un collectif de passionnés réunis autour d’une même vision : 
+créer, innover et partager des expériences uniques à travers différents univers artistiques et numériques.
+</p>
+
+<br>
+
+<p>
+Aujourd’hui, notre groupe développe plusieurs projets, allant de la création de contenus vidéo sur nos différentes plateformes, 
+à la gestion d’un serveur Minecraft proposant une expérience immersive et originale, 
+en passant par des productions audiovisuelles telles que des courts-métrages et des films indépendants.
+</p>
+
+<br>
+
+<p>
+Nous collaborons notamment avec <strong>SeaPalm</strong>, qui assure l’hébergement de notre serveur Minecraft 
+et nous accompagne dans le développement de nos activités. Nous travaillons également aux côtés de 
+<strong>Britania</strong>, l’un des premiers serveurs français Fort Boyard Minecraft, reconnu pour sa fidélité 
+à l’émission originale et son accessibilité au grand public.
+</p>
+
+<br>
+
+<p>
+Chez Medyra Associates, l’humain est au cœur de tout. L’avis de notre communauté, de nos partenaires 
+et de nos collaborateurs est essentiel pour évoluer dans les meilleures conditions et faire grandir nos projets.
+</p>
+
+<br>
+
+<p style="margin-top:20px; font-weight:bold; letter-spacing:1px;">
+One Team, One Adventure.
+</p>
   </div>
 
-  <!-- SLOGAN -->
-  <h1 id="hero-text">Medyra Associates</h1>
-
-  <!-- SOCIAL -->
-  <div class="hero-icons">
-    <a href="https://discord.gg/EaGYdfAQ" target="_blank"><i class="fab fa-discord"></i></a>
-    <a href="https://www.youtube.com/@leNath_officiel" target="_blank"><i class="fab fa-youtube"></i></a>
-  </div>
-
-  <!-- HUB NAV -->
-  <div class="hub-menu" id="hub-menu">
-    <h2>HUB</h2>
-    <h3>Où voulez-vous aller ?</h3>
-
-    <div class="hub-buttons">
-      <a href="minecraft.html">Minecraft</a>
-      <a href="studio.html">Studio</a>
-      <a href="lore.html">Lore</a>
-      <a href="team.html">L'équipe</a>
-      <a href="contact.html">Contact</a>
-    </div>
-
+  <!-- CONTACT -->
+  <div class="contact-btn">
+    <a href="contact.html">Contact</a>
   </div>
 
 </section>
-
-<script>
-window.addEventListener('load',()=>{
-  document.getElementById('hero-text').classList.add('show');
-  document.getElementById('hub-menu').classList.add('show');
-  document.querySelector('.top-brand').classList.add('show');
-});
-</script>
 
 </body>
 </html>
