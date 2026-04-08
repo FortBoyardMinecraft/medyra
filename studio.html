@@ -6,486 +6,186 @@
 <title>Medyra Studio</title>
 
 <link rel="icon" href="../logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" >
 
 <style>
-:root{
-  --accent:#00AEEF;
+:root{ --accent:#00AEEF; }
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Playfair Display',sans-serif; }
+
+body{
+  min-height:100vh;
+  background:url('images/fond3.png') center/cover fixed;
+  color:white;
 }
 
-*{ margin:0; padding:0; box-sizing:border-box; font-family:'Quantico',sans-serif; }
-html, body{ height:100%; overflow:hidden; background:#111; color:#fff; }
-
-/* NAVBAR */
-nav{
-  position:fixed; top:0; left:0; width:100%;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:9px 50px; background:rgba(0,0,0,1); border-bottom:3px solid var(--accent);
-  z-index:20; transition: top 0.4s ease, opacity 0.4s ease;
-}
-nav.hide{ top:-120px; opacity:0; }
-nav .logo{ display:flex; align-items:center; gap:15px; }
-nav .logo img{ height:70px; }
-nav .logo span{ font-weight:700; font-size:1.5rem; color:white; }
-nav ul{ list-style:none; display:flex; gap:30px; }
-nav ul li a{ text-decoration:none; color:white; font-weight:500; transition:.2s; }
-nav ul li a:hover{ color:var(--accent); cursor:pointer; }
-
-/* HERO */
-.hero{
-  height:100vh; display:flex; justify-content:center;  flex-direction: column; align-items:center; text-align:center; position:relative;
-  background-image:url('images/fond3.png'); background-size:cover; background-position:center; background-attachment:fixed;
-}
-.hero::after{
-  content:""; position:absolute; inset:0;
-}
-.hero h1{
-  color:white; font-size:3rem; z-index:2; opacity:0; transform:translateY(-150px); transition:1s;
-  background: rgba(0,0,0,0.7); padding:10px 20px; border-radius:8px;
-}
-.hero h1.show{ opacity:1; transform:translate(-30px, -150px); }
-
-/* TYPEWRITER */
-#typewriter{ color:white; font-size:3rem; white-space:nowrap; z-index:2; }
-.cursor{ display:inline-block; margin-left:5px; animation: blink 1s infinite; }
-@keyframes blink{ 0%,50%,100%{ opacity:1; } 25%,75%{ opacity:0; } }
-
-/* BOUTON RETOUR HUB */
-.btn-hub{
-  position:absolute; bottom:30px; left:30px;
-  padding:12px 25px; background:black; color:#fff; font-weight:700;
-  text-decoration:none; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:3;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-.btn-hub:hover{ transform:translateY(-3px); background:#007bb5; }
-
-/* SECTIONS */
-.section{
-display:none;
-min-height:100vh;
-padding:120px 20px 60px;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background:url('images/fond3.png') center/cover;
-position:relative;
+/* ===== HEADER ===== */
+.header-wrapper{
+  width:100%;
+  margin-top:0;
 }
 
-.section::after{
-content:"";
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.6);
+.header{
+  width:100%;
+  background:black;
+  padding:20px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
 }
 
-.content{
-position:relative;
-z-index:2;
-max-width:1000px;
-width:100%;
+.header img{
+  width:80px; /* plus grand */
 }
 
-/* ===== ANIMATION APPARITION SECTIONS ===== */
-
-.section .content{
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s ease;
+.header h1{
+  font-size:2rem; /* plus grand */
 }
 
-.section.show .content{
-  opacity:1;
-  transform:translateY(0);
+/* ===== LAYOUT ===== */
+.container{
+  display:flex;
+  gap:30px;
+  padding:50px;
 }
 
+/* BOX */
+.box{
+  flex:1;
+  background:rgba(0,0,0,0.75);
+  border-radius:15px;
+  padding:25px;
+  backdrop-filter:blur(8px);
+}
+
+/* ===== IMAGE PROJET ===== */
+.project-img{
+  width:55%; /* réduit */
+  max-width:350px; /* limite propre */
+  display:block;
+  margin:0 auto 20px auto;
+  border-radius:10px;
+}
+
+/* ===== TEXTE ===== */
+.box h2{
+  color:var(--accent);
+  margin-bottom:15px;
+}
+
+.box p{
+  line-height:1.7;
+  margin-bottom:15px;
+}
+
+/* ===== SIGNATURE ===== */
 .quote{
-margin-top:25px;
-color:var(--accent);
-font-weight:700;
-font-size:1.15rem;
-letter-spacing:0.5px;
+  margin-top:20px;
+  color:var(--accent);
+  font-weight:bold;
 }
 
 .signature{
-margin-top:15px;
-font-style:italic;
-opacity:.85;
+  font-style:italic;
+  opacity:0.85;
+  margin-top:10px;
 }
 
-.section.show .quote{
-  opacity:1;
-  transform:translateY(0);
-  transition-delay:.4s;
+/* ===== FOOTER ===== */
+.footer{
+  text-align:center;
+  padding:30px;
 }
 
-.section.show .signature{
-  opacity:1;
-  transform:translateY(0);
-  transition-delay:.6s;
-}
-
-.sectionTitle{
-text-align:center;
-font-size:3rem;
-margin-bottom:40px;
-color:white;
-letter-spacing:2px;
-}
-
-
-/* =========================
-GRID PROJETS
-========================= */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,260px));
-gap:25px;
-margin-top:30px;
-justify-content:center;
-}
-
-.project-card{
-background:rgba(0,0,0,0.7);
-padding:15px;
-border-radius:12px;
-cursor:pointer;
-transition:.3s;
-text-align:center;
-width:100%;
-}
-.project-card:hover{
-transform:translateY(-6px) scale(1.03);
-box-shadow:0 15px 40px rgba(0,0,0,0.6);
-}
-
-.project-card img{
-width:100%;
-height:140px;
-object-fit:cover;
-border-radius:8px;
-margin-bottom:10px;
-}
-/* =========================
-PRESENTATION BOX
-========================= */
-.presentationBox{
-background:rgba(0,0,0,0.75);
-padding:30px;
-border-radius:12px;
-line-height:1.8;
-}
-
-.presentationBox h2{
-color:var(--accent);
-margin-bottom:20px;
-}
-
-/* Grille projet */
-.gridImage {
-  width:100%;
-  height:150px;
-  object-fit:cover;
+.btn{
+  padding:12px 25px;
+  border:2px solid var(--accent);
+  color:white;
+  text-decoration:none;
   border-radius:10px;
-  margin-bottom:10px;
+  transition:0.3s;
 }
 
-/* POPUP PROJET */
-#projectPopup {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-  background: rgba(0,0,0,0.4); /* optionnel, ajoute un léger overlay */
+.btn:hover{
+  background:var(--accent);
+  color:black;
 }
 
-#popupBackground {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.4);
-  z-index: 100;
-}
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .container{
+    flex-direction:column;
+    padding:30px 20px;
+  }
 
-#popupContent {
-  position: absolute;
-  top: 50%;           
-  right: 10%;         
-  transform: translateY(-50%); 
-  max-width: 650px;   /* avant 500px, élargi à 650px */
-  width: 45%;         /* avant 35%, légèrement plus large */
-  background: rgba(0,0,0,0.85);
-  padding: 30px 20px 80px 20px;
-  border-radius: 12px; 
-  text-align: left;
-  color: #fff;
-  z-index: 101;
-  overflow-y: auto;
-  max-height: 80vh;
-}
-
-#popupContent h2 {
-  margin-bottom:15px;
-  color:var(--accent);
-  font-size:2rem;
-}
-
-#popupContent p {
-  line-height:1.6;
-  font-size:1rem;
-  margin-bottom:20px;
-}
-
-#popupClose {
-  align-self:flex-start;
-  padding:10px 20px;
-  border-radius:8px;
-  font-weight:700;
-  cursor:pointer;
-  transition:.25s;
-}
-
-#popupClose:hover { background:#007bb5; }
-
-/* Responsive */
-@media(max-width:768px){
-  #popupContent { padding:20px; max-height:90vh; }
-  #popupContent h2 { font-size:1.5rem; }
-  #popupContent p { font-size:0.9rem; }
-}
-
-#projects h2 {
-  font-size: 3rem;        /* agrandit le texte */
-  margin-bottom: 40px;    /* espace sous le titre avant la grille */
-  margin-top: 0;          /* remonte le titre vers le haut */
-  color: white;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  nav{ padding:15px 25px; }
-  nav .logo span{ font-size:1.2rem; }
-  nav ul{ gap:15px; font-size:0.9rem; }
-  .hero h1{ font-size:2rem; }
-  .section p{ font-size:0.95rem; }
+  .project-img{
+    width:100%;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav id="navbar">
-  <div class="logo">
+<!-- HEADER -->
+<div class="header-wrapper">
+  <div class="header">
     <img src="images/logo.png">
-    <span>Medyra Studio</span>
-  </div>
-  <ul>
-    <li><a id="btn-hero">Accueil</a></li>
-    <li><a id="btn-about">Présentation</a></li>
-    <li><a id="btn-projects">Projets</a></li>
-    <li><a id="btn-services">Services</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="hero">
-    <h1 id="typewriter" class="show"></h1>
-    <a href="index.html" class="btn-hub">Retour Hub</a>
-</section>
-
-<!-- PRESENTATION -->
-<section class="section" id="about" style="background-image:url('images/fond3.png');">
-  <div class="content">
-    <div class="presentationBox">
-      <h2>Presentation</h2>
-      <p>
-        Bienvenue dans l'espace Studio de <strong>Medyra Associates</strong>, un onglet permettant de présenter nos projets vidéos et cinéma, et un espace permettant à vous, le public, de donner votre avis sur les différents projets mis en avant sur le site.
-      </p>
-      <p>
-        Avec nos associés, nous travaillons chaque année pour vous proposer du contenu de qualité sur nos différents réseaux sociaux comme 
-        <a href="https://www.youtube.com/@OneTeam.OneAdventure" target="_blank"><strong>YouTube</strong></a>, 
-        <a href="https://www.twitch.tv/le_nath_" target="_blank"><strong>Twitch</strong></a> ou 
-        <a href="https://www.instagram.com/collectif.medyra/" target="_blank"><strong>Instagram</strong></a>, mais également des projets cinéma tels que des films ou des mini-séries.
-      </p>
-      <p>
-        Il est primordial pour nous de vous donner l'opportunité d'avoir un droit de regard sur nos productions afin que vous vous sentiez impliqués dans nos projets.
-      </p>
-      <p>
-<div class="quote">
-"Merci à tous pour votre compréhension et en vous souhaitant une bonne aventure chez nous."
-</div>
-
-<div class="signature">
-Guilbert Nathaniel / Directeur général Medyra Associates / © Medyra.Associates, One Team, One Adventure
-</div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="projects">
-  <div class="content">
-    <h2>Projets</h2>
-    <div class="grid">
-      <!-- Projet Our Endless Nights -->
-      <div class="project-card" 
-           data-title="Our Endless Nights" 
-           data-description="... (description en HTML)" 
-           data-image="images/projet1.png"
-           data-video="images/projet1.mp4">
-        <img src="images/projet1.png" alt="Our Endless Nights" class="gridImage">
-        <h3>Our Endless Nights</h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- POPUP PROJET -->
-<div id="projectPopup">
-  <!-- vidéo en fond (optionnelle) -->
-  <video id="popupVideo" autoplay muted loop playsinline 
-         style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; display:none;">
-  </video>
-
-  <!-- overlay sombre si pas de vidéo -->
-  <div id="popupBackground"></div>
-
-  <!-- contenu texte -->
-  <div id="popupContent">
-    <h2 id="popupTitle"></h2>
-    <div id="popupDescription"></div>
-    <a href="#" id="popupClose" class="btn-hub">Retour</a>
+    <h1>Bienvenue dans le Studio</h1>
   </div>
 </div>
 
-<!-- SERVICES -->
-<section class="section" id="services">
-  <div class="content">
-    <h1>Services</h1>
-    <div class="grid">
-      <div class="card"><h3>Communication</h3><p>Recherche responsable communication. Postulez dans l'onglet contact dans le HUB'</p></div>
+<!-- CONTENU -->
+<div class="container">
 
-    </div>
+  <!-- GAUCHE : PROJET -->
+  <div class="box">
+    <h2>Projet en avant</h2>
+
+    <img src="images/projet1.png" class="project-img">
+
+    <p>
+      À la fin de l’hiver 2026, la ville se réveille sous les premiers rayons de chaleur...
+    </p>
+
+    <p>
+      Un groupe d’adolescents inséparables voit leur soirée basculer dans une expérience mystérieuse.
+    </p>
   </div>
-</section>
 
-<script>
-/* NAVBAR HIDE ON SCROLL */
-let prevScroll = window.pageYOffset;
-const navbar = document.getElementById("navbar");
-window.onscroll = ()=>{
-  let current = window.pageYOffset;
-  if(prevScroll > current) navbar.classList.remove("hide");
-  else navbar.classList.add("hide");
-  prevScroll = current;
-};
+  <!-- DROITE : PRESENTATION -->
+  <div class="box">
+    <h2>Présentation</h2>
 
-/* SECTION SWITCH */
-const sections = {
-  "btn-hero": document.getElementById("hero"),
-  "btn-about": document.getElementById("about"),
-  "btn-projects": document.getElementById("projects"),
-  "btn-services": document.getElementById("services")
-};
-Object.keys(sections).forEach(id=>{
-  document.getElementById(id).onclick = ()=>{
-    Object.values(sections).forEach(s=>{ s.style.display='none'; s.classList.remove('show'); });
-    const sec = sections[id];
-    sec.style.display='flex';
-    sec.classList.add('show');
-    const content = sec.querySelector('.content');
-    if(content) content.classList.add('show');
-  };
-});
+    <p>
+      Bienvenue dans l'espace Studio de <strong>Medyra Associates</strong>, un onglet permettant de présenter nos projets vidéos et cinéma, et un espace permettant à vous, le public, de donner votre avis sur les différents projets mis en avant sur le site.
+    </p>
 
-/* TYPEWRITER */
-window.addEventListener('load', ()=>{
-  const text = "Bienvenue dans le studio";
-  const el = document.getElementById("typewriter");
-  const speed = 200, eraseSpeed = 100, pauseTime = 3500;
-  let i=0, typing=true;
+    <p>
+      Avec nos associés, nous travaillons chaque année pour vous proposer du contenu de qualité sur nos différents réseaux sociaux comme <strong>YouTube</strong>, <strong>Twitch</strong> ou <strong>Instagram</strong>, mais également des projets cinéma tels que des films ou des mini-séries.
+    </p>
 
-  function loop(){
-    if(typing){
-      if(i<text.length){ el.innerHTML = text.substring(0,i+1)+'<span class="cursor">|</span>'; i++; setTimeout(loop,speed);}
-      else{ typing=false; setTimeout(loop,pauseTime); }
-    } else {
-      if(i>0){ el.innerHTML = text.substring(0,i-1)+'<span class="cursor">|</span>'; i--; setTimeout(loop,eraseSpeed);}
-      else{ typing=true; setTimeout(loop,500); }
-    }
-  }
-  loop();
-  sections["btn-hero"].style.display='flex';
-});
+    <p>
+      Il est primordial pour nous de vous donner l'opportunité d'avoir un droit de regard sur nos productions afin que vous vous sentiez impliqués dans nos projets.
+    </p>
 
-/* POPUP VARIABLES */
-const popup = document.getElementById('projectPopup');
-const popupVideo = document.getElementById('popupVideo');
-const popupBackground = document.getElementById('popupBackground');
-const popupTitle = document.getElementById('popupTitle');
-const popupDescription = document.getElementById('popupDescription');
-const popupClose = document.getElementById('popupClose');
+    <div class="quote">
+      "Merci à tous pour votre compréhension et en vous souhaitant une bonne aventure chez nous."
+    </div>
 
-/* SELECTION DES CARTES PROJETS */
-const projectCards = document.querySelectorAll('.project-card');
+    <div class="signature">
+      Guilbert Nathaniel / Directeur général Medyra Associates / © Medyra.Associates, One Team, One Adventure
+    </div>
 
-/* CLICK SUR CARTE PROJET */
-projectCards.forEach(card => {
-  card.addEventListener('click', () => {
-    const img = card.dataset.image;
-    const video = card.dataset.video; // optionnel
-    const title = card.dataset.title;
-    const desc = card.dataset.description; // optionnel, tu peux l’ignorer si texte en JS
+  </div>
 
-    // Afficher vidéo si existante, sinon image
-    if(video){
-      popupVideo.src = video;
-      popupVideo.style.display = 'block';
-      popupVideo.play();
-      popupBackground.style.display = 'none';
-    } else {
-      popupVideo.pause();
-      popupVideo.currentTime = 0;
-      popupVideo.style.display = 'none';
-      popupBackground.style.backgroundImage = `url(${img})`;
-      popupBackground.style.display = 'block';
-    }
+</div>
 
-    popupTitle.textContent = title;
-
-    // Contenu de la popup (tu peux remplacer par desc si tu veux)
-    popupDescription.innerHTML = `
-      <p>À la fin de l’hiver <span style="color:#FFD166;font-weight:bold">2026</span>, la ville se réveille sous les premiers rayons de chaleur : les bourgeons percent timidement, les arbres reprennent leurs feuilles vertes.</p>
-
-      <p>Un <span style="color:#00AEEF;font-weight:bold">groupe d’adolescents inséparables</span> décide de profiter de ses vacances scolaires. Mais ce qui devait être une soirée ordinaire se transforme en une expérience troublante qui pourrait soit les rapprocher, soit les séparer à jamais…</p>
-
-      <p>Au cours de cette nuit, ils rencontreront un autre groupe d’adolescents, venus d’un monde où l’<span style="color:#FF7F50;font-weight:bold">obscurité domine</span>, un univers où les ombres s’étendent à l’infini et cachent une <span style="color:#FF4C4C;font-weight:bold">créature assoiffée de sang</span>.</p>
-
-      <p>Les frontières entre ce monde parallèle et la nuit du monde réel deviennent floues, permettant à ces deux groupes de se rencontrer… mais ouvrant également la voie à la créature pour sortir de son antre.</p>
-
-      <p>Nos adolescents devront alors unir leurs forces, créer des liens inattendus et faire face à une menace mystérieuse et implacable. <span style="color:#FFD166;font-weight:bold">Qui sera le gibier, qui sera le chasseur ?</span></p>
-    `;
-
-    popup.style.display = 'flex';
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
-});
-
-/* FERMER POPUP */
-popupClose.addEventListener('click', e => {
-  e.preventDefault();
-  popup.style.display = 'none';
-  popupVideo.pause();
-  popupVideo.currentTime = 0;
-});
-</script>
+<!-- FOOTER -->
+<div class="footer">
+  <a href="index.html" class="btn">Retour au Hub</a>
+</div>
 
 </body>
 </html>
