@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medyra Associates</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================= 1. LE HUB ================= -->
+    <section id="hub" class="page active">
+        <div class="hub-overlay"></div>
+        <div class="hub-content">
+            <!-- Remplacement du texte par votre logo en grand -->
+            <img src="images/logo.png" alt="Medyra Associates Logo" class="hub-logo">
+            <div class="hub-buttons">
+                <button class="btn btn-blue" onclick="switchPage('studio')">Découvrir le studio</button>
+                <button class="btn btn-black" onclick="switchPage('projects')">Nos projets</button>
+                <button class="btn btn-black" onclick="switchPage('team')">Notre équipe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 2. DÉCOUVRIR LE STUDIO ================= -->
+    <section id="studio" class="page">
+        <header class="studio-banner">
+            <div class="banner-overlay"></div>
+            <h1>Bienvenue dans le studio</h1>
+            <button class="back-btn" onclick="switchPage('hub')">← Retour au Hub</button>
+        </header>
+        <div class="studio-content">
+            <div class="container">
+                <h2>Notre histoire</h2>
+                <p>Medyra Associates est avant tout un collectif de passionnés réunis autour d’une même vision : créer, innover et partager des expériences uniques à travers différents univers artistiques et numériques.</p>
+                <p>Aujourd’hui, notre groupe développe plusieurs projets, allant de la création de contenus vidéo sur nos différentes plateformes, en passant par des productions audiovisuelles telles que des courts-métrages et des films indépendants.</p>
+                <p>Chez Medyra Associates, l’humain est au cœur de tout. L’avis de notre communauté, de nos partenaires et de nos collaborateurs est essentiel pour évoluer dans les meilleures conditions et faire grandir nos projets.</p>
+                <p class="highlight-quote">One Team, One Adventure.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 3. NOS PROJETS (PICTURE WALLET) ================= -->
+    <section id="projects" class="page">
+        <div class="projects-header">
+            <button class="back-btn" onclick="switchPage('hub')">← Retour au Hub</button>
+            <h2>Nos Projets</h2>
+            <p>Cliquez sur une image pour découvrir les détails du projet.</p>
+        </div>
+        <div class="projects-grid">
+            <!-- Projet 1 -->
+            <div class="project-card" onclick="openModal('Our Endless Nights', 'À la fin de l’hiver 2026, la ville se réveille sous les premiers rayons de chaleur... Un groupe d’adolescents inséparables voit leur soirée basculer dans une expérience mystérieuse.', 'images/projet1.png')">
+                <img src="images/projet1.png" alt="Our Endless Nights">
+                <div class="project-overlay">
+                    <h3>Our Endless Nights</h3>
+                </div>
+            </div>
+            <!-- Projet 2 -->
+            <div class="project-card" onclick="openModal('BeAcH SaFetY ArChIvE', 'Et si le bruit des vagues cachaient un bruit sourd que personne ne veut entendre ?', 'images/projet2.png')">
+                <img src="images/projet2.png" alt="BeAcH SaFetY ArChIvE">
+                <div class="project-overlay">
+                    <h3>BeAcH SaFetY ArChIvE</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 4. L'ÉQUIPE ================= -->
+    <section id="team" class="page">
+        <div class="projects-header">
+            <button class="back-btn" onclick="switchPage('hub')">← Retour au Hub</button>
+            <h2>L'Équipe</h2>
+            <p>Les talents qui se cachent derrière Medyra Associates.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <h3>Nathaniel Guilbert</h3>
+                <span class="team-role">Président et Fondateur</span>
+            </div>
+            <div class="team-card">
+                <h3>Nathan Thoma</h3>
+                <span class="team-role">Responsable trésorerie, Co-scénariste, Co-créateur, Développement du site web</span>       
+            </div> 
+           <div class="team-card">
+                <h3>Nicolas Souchaud</h3>
+                <span class="team-role">Direction artistique</span>       
+            </div>          
+        </div>
+    </section>
+
+    <!-- Modal pour afficher la description d'un projet -->
+    <div id="projectModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModalForce()">&times;</span>
+            <img id="modalImg" src="" alt="">
+            <h3 id="modalTitle"></h3>
+            <p id="modalDesc"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
