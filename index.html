@@ -8,9 +8,19 @@
 </head>
 <body>
 
-    <!-- ================= 1. LE HUB ================= -->
+   <!-- ================= 1. LE HUB ================= -->
     <section id="hub" class="page active">
         <div class="hub-overlay"></div>
+
+        <!-- Header d'accueil avec liens réseaux sociaux -->
+        <header class="hub-header">
+            <span class="header-tagline">Suivez notre aventure</span>
+            <div class="header-social-buttons">
+                <a href="https://www.instagram.com/association.medyra/" target="_blank" rel="noopener noreferrer" class="btn btn-social">Instagram</a>
+                <a href="https://www.youtube.com/@OneTeam.OneAdventure" target="_blank" rel="noopener noreferrer" class="btn btn-social">YouTube</a>
+            </div>
+        </header>
+
         <div class="hub-content">
             <!-- Remplacement du texte par votre logo en grand -->
             <img src="images/logo.png" alt="Medyra Associates Logo" class="hub-logo">
@@ -40,7 +50,7 @@
         </div>
     </section>
 
-    <!-- ================= 3. NOS PROJETS (PICTURE WALLET) ================= -->
+<!-- ================= 3. NOS PROJETS (PICTURE WALLET) ================= -->
     <section id="projects" class="page">
         <div class="projects-header">
             <button class="back-btn" onclick="switchPage('hub')">← Retour au Hub</button>
@@ -48,22 +58,57 @@
             <p>Cliquez sur une image pour découvrir les détails du projet.</p>
         </div>
         <div class="projects-grid">
-            <!-- Projet 1 -->
-            <div class="project-card" onclick="openModal('Our Endless Nights', 'À la fin de l’hiver 2026, la ville se réveille sous les premiers rayons de chaleur... Un groupe d’adolescents inséparables voit leur soirée basculer dans une expérience mystérieuse.', 'images/projet1.png')">
-                <img src="images/projet1.png" alt="Our Endless Nights">
+            <!-- Projet 1 : Our Endless Night -->
+            <div class="project-card" onclick="openModal('Our Endless Night', 'En 2026, Un groupe de jeunes soudés décide de s’organiser une soirée de retrouvaille après le lycée.\nIls vont tomber sur un objet qui va sceller leur destin à jamais…\nL’existence d’un autre monde, envahi par la nuit, entouré d’ombres et cerné par des monstres viendra rajouter de la difficulté à une quête qui aura pour objectif de sauver l’humanité d’un prédateur sanguinaire.\nMais ce qu’ils ne savent pas c’est que l’histoire est plus complexe… Il faudra traversé les légendes du passé dans une vile corrompue, traversé ce monde nocturne et y découvrir ses secrets.\nVont-ils réussir à rester soudé pour survivre ?\nCar le mot d’ordre de cette série est qu’il existe « une menace pour nous unir »', 'images/projet1.png', 'images/image3.png')">
+                <img src="images/projet1.png" alt="Our Endless Night">
                 <div class="project-overlay">
-                    <h3>Our Endless Nights</h3>
+                    <h3>Our Endless Night</h3>
                 </div>
             </div>
-            <!-- Projet 2 -->
-            <div class="project-card" onclick="openModal('BeAcH SaFetY ArChIvE', 'Et si le bruit des vagues cachaient un bruit sourd que personne ne veut entendre ?', 'images/projet2.png')">
-                <img src="images/projet2.png" alt="BeAcH SaFetY ArChIvE">
+            <!-- Projet 2 : BlackBass -->
+            <div class="project-card" onclick="openModal('BlackBass', 'En 2025, une petite plage abandonnée appelée Le BlackBass est fermée au public après plusieurs disparitions inexpliquées. Les autorités évoquent des accidents liés aux marées, mais d’anciens téléphones portables sont retrouvées dans une station de surveillance côtière montrent un détail commun sur chacun des téléphones assez troublant : une silhouette noire apparaît toujours au bord de l’eau, immobile, observant les visiteurs avant leur disparition.\n\nDes années plus tard, Nathan, un streameur de 20 ans connu pour jouer en ligne à des nouveaux jeux, il décide pour fêter ses 100 milles abonnés, de passer une nuit entière sur la plage pour créer son contenu le plus populaire. Souffrant de troubles psychotiques et de crises paranoïaques, Nathan commence son live persuadé que quelqu’un l’observe depuis les dunes. Son audience pense d’abord à une mise en scène destinée à attirer des vues.\n\nMais au fil de la nuit, des événements impossibles apparaissent dans le flux : des voix provenant de l’océan, des messages qui s’écrivent seuls sur son écran, et une silhouette sombre qui semble se rapprocher à chaque coupure de caméra. Le plus inquiétant est que la créature ne semble pas poursuivre Nathan… elle semble essayer de lui montrer quelque chose.\n\nAlors que son comportement devient de plus en plus instable, Nathan découvre des fragments d’anciennes vidéos montrant d’autres personnes ayant vécu exactement la même nuit, avec les mêmes phrases, les mêmes hallucinations et la même silhouette en arrière-plan.\n\nLa frontière entre sa psychose et la réalité commence à disparaître. Son public ne sait plus s’il assiste à une crise mentale, à un meurtre en direct ou à la découverte d’une présence qui existe depuis toujours sur cette plage.\n\nLe dernier message envoyé depuis son compte sera simplement :\n« La silhouette n’est pas venue me chercher. Elle attendait que je la voie. »', 'images/projet2.png', 'images/image4.png')">
+                <img src="images/projet2.png" alt="BlackBass">
                 <div class="project-overlay">
-                    <h3>BeAcH SaFetY ArChIvE</h3>
+                    <h3>BlackBass</h3>
                 </div>
             </div>
         </div>
     </section>
+
+<!-- Modal pour afficher la description d'un projet -->
+    <div id="projectModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModalForce()">&times;</span>
+            
+            <div class="modal-body">
+                <!-- 1. Image A4 à gauche -->
+                <div class="modal-image-container">
+                    <img id="modalImg" src="" alt="Affiche A4 du projet">
+                </div>
+                
+                <!-- 2. Bloc central élargi (Rouge + Bleu) -->
+                <div class="modal-middle-box">
+                    <!-- Zone ROUGE : Image bannière allongée -->
+                    <div class="middle-banner-container">
+                        <img id="modalMiddleImg" src="" alt="Bannière du projet">
+                    </div>
+                    
+                    <!-- Zone BLEUE : Infos "Coming Soon" allongées -->
+                    <div class="middle-info">
+                        <p class="badge-release">Sortie Coming Soon</p>
+                        <p class="info-text">Tourné dans le département des Hauts-de-France</p>
+                        <p class="info-credits">Crédits : <span>Medyra.Associates</span></p>
+                    </div>
+                </div>
+
+                <!-- 3. Zone VERTE : Titre + Texte descriptif à droite avec scroll -->
+                <div class="modal-text-box">
+                    <h3 id="modalTitle"></h3>
+                    <div id="modalDesc" class="modal-desc"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ================= 4. L'ÉQUIPE ================= -->
     <section id="team" class="page">
@@ -75,11 +120,11 @@
         <div class="team-grid">
             <div class="team-card">
                 <h3>Nathaniel Guilbert</h3>
-                <span class="team-role">Président et Fondateur</span>
+                <span class="team-role">Président-Fondateur, réalisateur et Scénariste</span>
             </div>
             <div class="team-card">
                 <h3>Nathan Thoma</h3>
-                <span class="team-role">Responsable trésorerie, Co-scénariste, Co-créateur, Développement du site web</span>       
+                <span class="team-role">Co-fondeur, Responsable trésorerie, Co-scénariste, Développement du site web</span>       
             </div> 
            <div class="team-card">
                 <h3>Nicolas Souchaud</h3>

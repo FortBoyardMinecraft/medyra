@@ -34,6 +34,60 @@ body {
 }
 
 /* ================= 1. LE HUB ================= */
+/* Header du Hub (Accueil) */
+.hub-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column; /* Aligne verticalement la phrase et les boutons */
+    justify-content: center;
+    align-items: center; /* Centre le contenu horizontalement */
+    gap: 15px; /* Espace entre la phrase et les boutons */
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.header-tagline {
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.header-social-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Style des boutons réseaux sociaux */
+.btn-social {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.btn-social:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
 #hub {
     height: 100vh;
     background: url('images/fond-hub.png') no-repeat center center/cover;
@@ -280,48 +334,179 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(12px);
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(15px);
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 30px;
 }
 
+/* La Grande case globale */
 .modal-content {
-    background: #141414;
+    background: #121212;
     border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
     padding: 35px;
-    border-radius: 16px;
-    max-width: 550px;
-    width: 90%;
+    max-width: 1550px;
+    width: 95%;
+    max-height: 90vh;
     position: relative;
-    text-align: center;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-.modal-content img {
+.modal-body {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+    height: 100%;
+}
+
+/* 1. Image A4 à gauche (Hauteur fixe alignée sur la modale) */
+.modal-image-container {
+    flex: 0 0 340px;
+    height: 520px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.modal-image-container img {
     width: 100%;
-    height: 260px;
+    height: 100%;
     object-fit: cover;
+    display: block;
+}
+
+/* 2. Bloc central élargi (Encadré plus clair) */
+.modal-middle-box {
+    flex: 0 0 380px; /* Élargi selon votre schéma */
+    height: 520px;
+    background: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ROUGE : Image bannière allongée */
+.middle-banner-container {
+    width: 100%;
+    height: 280px;
     border-radius: 10px;
-    margin-bottom: 20px;
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.modal-content h3 {
-    margin-bottom: 15px;
-    font-size: 1.8rem;
-    color: #ffffff;
+.middle-banner-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-.modal-content p {
+/* BLEU : Infos "Coming Soon" étirées horizontalement */
+.middle-info {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.badge-release {
+    display: block;
+    width: 100%; /* Étiré horizontalement */
+    background: linear-gradient(135deg, #ffffff, #a3a3a3);
+    color: #000000;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 12px 0;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.info-text {
+    font-size: 0.85rem;
     color: #cccccc;
-    line-height: 1.6;
-    font-size: 1.05rem;
+    line-height: 1.4;
 }
 
+.info-credits {
+    font-size: 0.85rem;
+    color: #a3a3a3;
+}
+
+.info-credits span {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* 3. VERT : Bloc texte à droite avec défilement (scroll) */
+.modal-text-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 520px;
+    overflow: hidden;
+}
+
+.modal-text-box h3 {
+    margin-bottom: 15px;
+    font-size: 2.2rem;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 10px;
+    flex-shrink: 0;
+}
+
+/* Zone verte de défilement pour les longs textes */
+.modal-desc {
+    overflow-y: auto; /* Active le scroll vertical */
+    padding-right: 15px;
+    height: 100%;
+}
+
+.modal-desc p {
+    color: #cccccc;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* Personnalisation de la barre de défilement (scroll) */
+.modal-desc::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-desc::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.modal-desc::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+}
+
+.modal-desc::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Bouton Fermer */
 .close-btn {
     position: absolute;
     top: 15px;
@@ -330,12 +515,24 @@ body {
     cursor: pointer;
     color: #fff;
     transition: color 0.2s;
+    z-index: 10;
 }
 
 .close-btn:hover {
     color: #a3a3a3;
 }
 
+/* Adaptation petits écrans */
+@media (max-width: 1100px) {
+    .modal-content { max-height: 95vh; overflow-y: auto; }
+    .modal-body { flex-direction: column; height: auto; }
+    .modal-image-container, .modal-middle-box, .modal-text-box {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin: 0 auto;
+    }
+}
 /* ================= 4. PAGE L'ÉQUIPE (Harmonisée Gris / Blanc) ================= */
 #team {
     padding: 60px 20px;

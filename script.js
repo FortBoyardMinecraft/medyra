@@ -19,10 +19,27 @@ const modalImg = document.getElementById('modalImg');
 const modalTitle = document.getElementById('modalTitle');
 const modalDesc = document.getElementById('modalDesc');
 
-function openModal(title, description, imgSrc) {
+// Récupération de l'image centrale dans le DOM
+const modalMiddleImg = document.getElementById('modalMiddleImg');
+
+function openModal(title, description, mainImgSrc, posterImgSrc) {
     modalTitle.innerText = title;
-    modalDesc.innerText = description;
-    modalImg.src = imgSrc;
+    
+    // Formate le texte avec des paragraphes
+    const formattedDesc = description
+        .split('\n\n')
+        .map(paragraph => `<p>${paragraph.replace(/\n/g, '<br>')}</p>`)
+        .join('');
+    modalDesc.innerHTML = formattedDesc;
+    
+    // Image A4 à gauche
+    modalImg.src = posterImgSrc || mainImgSrc;
+    
+    // Image centrale (projet1.png ou projet2.png)
+    if (modalMiddleImg) {
+        modalMiddleImg.src = mainImgSrc;
+    }
+    
     modal.style.display = 'flex';
 }
 
