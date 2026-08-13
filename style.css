@@ -15,24 +15,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Gestion des pages (Single Page Application) */
-.page {
-    display: none;
-    width: 100vw;
-    min-height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.page.active {
-    display: block;
-    opacity: 1;
-    position: relative;
-}
-
 /* ================= 0. VIDÉO D'INTRO OVERLAY ================= */
 #intro-overlay {
     position: fixed;
@@ -46,23 +28,20 @@ body {
     justify-content: center;
     align-items: center;
     opacity: 1;
-    /* Durée du fondu enchaîné (1.2 secondes) */
-    transition: opacity 1.2s ease-in-out; 
+    transition: opacity 1.2s ease-in-out;
 }
 
-/* Classe appliquée en JS quand la vidéo se termine */
 #intro-overlay.fade-out {
     opacity: 0;
-    pointer-events: none; /* Permet de cliquer à travers pendant le fondu */
+    pointer-events: none;
 }
 
 #intro-video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Couvre tout l'écran sans déformer la vidéo */
+    object-fit: cover;
 }
 
-/* Bouton pour passer l'intro */
 #skip-intro-btn {
     position: absolute;
     bottom: 30px;
@@ -87,8 +66,25 @@ body {
     transform: translateY(-2px);
 }
 
+/* Gestion des pages (Single Page Application) */
+.page {
+    display: none;
+    width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+    position: relative;
+}
+
 /* ================= 1. LE HUB ================= */
-/* Header du Hub (Accueil) */
 .hub-header {
     position: absolute;
     top: 0;
@@ -96,10 +92,10 @@ body {
     width: 100%;
     z-index: 10;
     display: flex;
-    flex-direction: column; /* Aligne verticalement la phrase et les boutons */
+    flex-direction: column;
     justify-content: center;
-    align-items: center; /* Centre le contenu horizontalement */
-    gap: 15px; /* Espace entre la phrase et les boutons */
+    align-items: center;
+    gap: 15px;
     padding: 30px 20px;
     text-align: center;
 }
@@ -120,7 +116,6 @@ body {
     gap: 15px;
 }
 
-/* Style des boutons réseaux sociaux */
 .btn-social {
     display: inline-block;
     text-decoration: none;
@@ -166,31 +161,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 35px;
 }
 
-/* Style du Logo en grand sur le Hub avec lueur blanche */
 .hub-logo {
-    max-width: 350px;
+    max-width: 380px;
     width: 80vw;
     height: auto;
     filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.25));
 }
 
-.hub-subtitle {
-    font-size: 1.2rem;
-    color: #a3a3a3;
-    margin-bottom: 40px;
-}
-
 .hub-buttons {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-/* Boutons animés (Gris et Blanc modernes) */
+/* Boutons globaux */
 .btn {
     padding: 15px 32px;
     font-size: 1rem;
@@ -201,7 +189,14 @@ body {
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-/* Bouton principal remplacé par du Blanc lumineux */
+/* Version grand format pour la page d'accueil */
+.btn-large {
+    padding: 20px 42px;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    border-radius: 40px;
+}
+
 .btn-blue {
     background: #ffffff;
     color: #080808;
@@ -216,28 +211,30 @@ body {
 }
 
 .btn-black {
-    background: rgba(26, 26, 26, 0.8);
+    background: rgba(26, 26, 26, 0.85);
     backdrop-filter: blur(10px);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .btn-black:hover {
-    background: rgba(45, 45, 45, 0.9);
+    background: rgba(45, 45, 45, 0.95);
     border-color: rgba(255, 255, 255, 0.6);
     transform: translateY(-4px);
     box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
 }
 
-/* ================= 2. DÉCOUVRIR LE STUDIO (Moins terne & sophistiqué) ================= */
+/* ================= 2. DÉCOUVRIR LE STUDIO ================= */
 .studio-banner {
     height: 60vh;
     background: url('images/fond-studio.JPG') no-repeat center center/cover;
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    gap: 25px;
 }
 
 .banner-overlay {
@@ -256,6 +253,16 @@ body {
     font-weight: 700;
     letter-spacing: 1px;
     text-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Sous-boutons intégrés dans le Header du Studio */
+.studio-sub-buttons {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .back-btn {
@@ -280,7 +287,7 @@ body {
 }
 
 .studio-content {
-    padding: 80px 20px;
+    padding: 60px 20px 80px 20px;
     max-width: 850px;
     margin: 0 auto;
     text-align: center;
@@ -302,7 +309,7 @@ body {
     margin-bottom: 25px;
 }
 
-/* ================= 3. NOS PROJETS (Picture Wallet rehaussé et lumineux) ================= */
+/* ================= 3. NOS PROJETS ================= */
 #projects {
     padding: 60px 20px;
     min-height: 100vh;
@@ -382,7 +389,179 @@ body {
     font-weight: 700;
 }
 
-/* Modale de description élégante */
+/* ================= 4. DIGITAL-SERVICE ================= */
+#digital-service {
+    padding: 60px 20px;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #141414 0%, #080808 100%);
+}
+
+.ds-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.ds-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.ds-header p {
+    color: #a3a3a3;
+    font-size: 1.1rem;
+}
+
+.ds-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+}
+
+.ds-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr 1fr;
+    gap: 35px;
+    align-items: stretch;
+}
+
+.ds-box {
+    background: rgba(22, 22, 22, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 50px 35px;
+    min-height: 450px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.ds-box:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.ds-box-logo {
+    align-items: center;
+    text-align: center;
+}
+
+.ds-logo {
+    max-width: 270px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 25px rgba(255, 255, 255, 0.25));
+}
+
+.ds-box-services h3, .ds-box-contact h3 {
+    font-size: 2.1rem;
+    color: #ffffff;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 12px;
+}
+
+.ds-services-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.ds-services-list li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #d4d4d4;
+}
+
+.ds-services-list strong {
+    color: #ffffff;
+}
+
+.ds-box-contact p {
+    color: #d4d4d4;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+}
+
+.ds-contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.ds-contact-details p {
+    margin-bottom: 0;
+}
+
+.ds-action {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.ds-realisations-content {
+    max-width: 1000px;
+    text-align: center;
+}
+
+.ds-realisations-content h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.realisations-intro {
+    color: #a3a3a3;
+    margin-bottom: 25px;
+}
+
+.realisations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.realisation-item {
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.realisation-item:hover {
+    transform: scale(1.03);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.realisation-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.realisation-item span {
+    padding: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: #111;
+}
+
+/* Modale globale */
 .modal {
     display: none;
     position: fixed;
@@ -398,7 +577,6 @@ body {
     padding: 30px;
 }
 
-/* La Grande case globale */
 .modal-content {
     background: #121212;
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -421,7 +599,6 @@ body {
     height: 100%;
 }
 
-/* 1. Image A4 à gauche (Hauteur fixe alignée sur la modale) */
 .modal-image-container {
     flex: 0 0 340px;
     height: 520px;
@@ -437,9 +614,8 @@ body {
     display: block;
 }
 
-/* 2. Bloc central élargi (Encadré plus clair) */
 .modal-middle-box {
-    flex: 0 0 380px; /* Élargi selon votre schéma */
+    flex: 0 0 380px;
     height: 520px;
     background: #1e1e1e;
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -451,7 +627,6 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* ROUGE : Image bannière allongée */
 .middle-banner-container {
     width: 100%;
     height: 280px;
@@ -467,7 +642,6 @@ body {
     display: block;
 }
 
-/* BLEU : Infos "Coming Soon" étirées horizontalement */
 .middle-info {
     width: 100%;
     text-align: center;
@@ -479,7 +653,7 @@ body {
 
 .badge-release {
     display: block;
-    width: 100%; /* Étiré horizontalement */
+    width: 100%;
     background: linear-gradient(135deg, #ffffff, #a3a3a3);
     color: #000000;
     font-size: 0.9rem;
@@ -508,7 +682,6 @@ body {
     font-weight: bold;
 }
 
-/* 3. VERT : Bloc texte à droite avec défilement (scroll) */
 .modal-text-box {
     flex: 1;
     display: flex;
@@ -526,9 +699,8 @@ body {
     flex-shrink: 0;
 }
 
-/* Zone verte de défilement pour les longs textes */
 .modal-desc {
-    overflow-y: auto; /* Active le scroll vertical */
+    overflow-y: auto;
     padding-right: 15px;
     height: 100%;
 }
@@ -541,26 +713,6 @@ body {
     text-align: justify;
 }
 
-/* Personnalisation de la barre de défilement (scroll) */
-.modal-desc::-webkit-scrollbar {
-    width: 6px;
-}
-
-.modal-desc::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-}
-
-.modal-desc::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 10px;
-}
-
-.modal-desc::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-/* Bouton Fermer */
 .close-btn {
     position: absolute;
     top: 15px;
@@ -576,7 +728,7 @@ body {
     color: #a3a3a3;
 }
 
-/* Adaptation petits écrans */
+/* Responsive */
 @media (max-width: 1100px) {
     .modal-content { max-height: 95vh; overflow-y: auto; }
     .modal-body { flex-direction: column; height: auto; }
@@ -586,8 +738,16 @@ body {
         height: auto;
         margin: 0 auto;
     }
+    .ds-grid {
+        grid-template-columns: 1fr;
+    }
+    .ds-box {
+        min-height: auto;
+        padding: 35px 25px;
+    }
 }
-/* ================= 4. PAGE L'ÉQUIPE (Harmonisée Gris / Blanc) ================= */
+
+/* ================= 5. L'ÉQUIPE ================= */
 #team {
     padding: 60px 20px;
     min-height: 100vh;
@@ -616,7 +776,6 @@ body {
     overflow: hidden;
 }
 
-/* Liseré lumineux argenté en haut de la carte au survol */
 .team-card::before {
     content: '';
     position: absolute;
@@ -637,16 +796,6 @@ body {
 
 .team-card:hover::before {
     opacity: 1;
-}
-
-.team-card img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 20px auto;
-    border: 3px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 .team-card h3 {

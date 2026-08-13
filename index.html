@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<body>
 
     <!-- ================= 0. VIDÉO D'INTRODUCTION ================= -->
     <div id="intro-overlay">
         <video id="intro-video" autoplay muted playsinline>
-           <source src="images/intro.mp4" type="video/mp4">
+            <source src="images/intro.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la lecture de vidéo.
         </video>
         <button id="skip-intro-btn" onclick="endIntro()">Passer l'intro</button>
     </div>
 
-   <!-- ================= 1. LE HUB ================= -->
+   <!-- ================= 1. LE HUB (PAGE D'ACCUEIL) ================= -->
     <section id="hub" class="page active">
         <div class="hub-overlay"></div>
 
@@ -32,12 +31,13 @@
         </header>
 
         <div class="hub-content">
-            <!-- Remplacement du texte par votre logo en grand -->
+            <!-- Logo principal -->
             <img src="images/logo2.png" alt="Medyra Associates Logo" class="hub-logo">
+            
+            <!-- Les 2 grands boutons principaux -->
             <div class="hub-buttons">
-                <button class="btn btn-blue" onclick="switchPage('studio')">Découvrir le studio</button>
-                <button class="btn btn-black" onclick="switchPage('projects')">Nos projets</button>
-                <button class="btn btn-black" onclick="switchPage('team')">Notre équipe</button>
+                <button class="btn btn-blue btn-large" onclick="switchPage('studio')">Découvrir le studio</button>
+                <button class="btn btn-black btn-large" onclick="switchPage('digital-service')">Digital-Service</button>
             </div>
         </div>
     </section>
@@ -46,9 +46,17 @@
     <section id="studio" class="page">
         <header class="studio-banner">
             <div class="banner-overlay"></div>
-            <h1>Bienvenue dans le studio</h1>
             <button class="back-btn" onclick="switchPage('hub')">← Retour au Hub</button>
+            
+            <h1>Bienvenue dans le studio</h1>
+
+            <!-- Les boutons intégrés au HEADER du studio -->
+            <div class="studio-sub-buttons">
+                <button class="btn btn-blue" onclick="switchPage('projects')">Nos projets</button>
+                <button class="btn btn-black" onclick="switchPage('team')">Notre équipe</button>
+            </div>
         </header>
+
         <div class="studio-content">
             <div class="container">
                 <h2>Notre histoire</h2>
@@ -60,10 +68,10 @@
         </div>
     </section>
 
-<!-- ================= 3. NOS PROJETS (PICTURE WALLET) ================= -->
+    <!-- ================= 3. NOS PROJETS ================= -->
     <section id="projects" class="page">
         <div class="projects-header">
-            <button class="back-btn" onclick="switchPage('hub')">← Retour au Hub</button>
+            <button class="back-btn" onclick="switchPage('studio')">← Retour au Studio</button>
             <h2>Nos Projets</h2>
             <p>Cliquez sur une image pour découvrir les détails du projet.</p>
         </div>
@@ -82,55 +90,64 @@
                     <h3>BlackBass</h3>
                 </div>
             </div>
-<!-- Projet 3 : BlackBass -->
+            <!-- Projet 3 : THE LOST SOLDIER -->
             <div class="project-card" onclick="openModal('THE LOST SOLDIER', 'Juin 1944. Les Alliés débarquent en Normandie. La France est encore sous l’occupation nazie, et chaque minute rapproche le pays de sa libération. Le Caporal Alexandre, 22 ans, se réveille sur une plage, seul, couvert de sable, avec son uniforme et l’entièreté de son paquetage. Il ne se souvient ni d’avoir été blessé, ni d’avoir été transporté. Autour de lui, pourtant, plus aucun soldat. Plus aucun navire. Plus aucun signe de la guerre.Lorsqu’il atteint la ville la plus proche, il découvre une vérité impossible à accepter : nous sommes en 2026. Soixante-dix-huit ans se sont écoulés. Dans un monde qu’il ne comprend pas, Alexandre devient un homme sans identité, sans famille et sans époque. \n\nMais lorsqu’il découvre les archives de la guerre, il comprend que son apparition en 2026 n’est peut-être pas un accident. Son unité a disparu. \n\nSon nom n’existe plus dans les rapports militaires. Et certains événements de juin 1944 ne se sont jamais produits comme il s’en souvenait. Alexandre doit alors retrouver la trace de ce qui l’a projeté dans le futur et comprendre pourquoi lui. Car quelque chose a changé dans le passé. Et s’il ne parvient pas à retourner en 1944, la France pourrait ne jamais être libérée. Pour rentrer chez lui, il devra affronter le temps. Pour sauver son pays, il devra réécrire l’Histoire.', 'images/projet3.png', 'images/image5.png')">
                 <img src="images/projet3.png" alt="THE LOST SOLDIER">
                 <div class="project-overlay">
-                    <h3>BlackBass</h3>
+                    <h3>THE LOST SOLDIER</h3>
                 </div>
             </div>
         </div>
     </section>
 
-<!-- Modal pour afficher la description d'un projet -->
-    <div id="projectModal" class="modal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModalForce()">&times;</span>
-            
-            <div class="modal-body">
-                <!-- 1. Image A4 à gauche -->
-                <div class="modal-image-container">
-                    <img id="modalImg" src="" alt="Affiche A4 du projet">
-                </div>
-                
-                <!-- 2. Bloc central élargi (Rouge + Bleu) -->
-                <div class="modal-middle-box">
-                    <!-- Zone ROUGE : Image bannière allongée -->
-                    <div class="middle-banner-container">
-                        <img id="modalMiddleImg" src="" alt="Bannière du projet">
-                    </div>
-                    
-                    <!-- Zone BLEUE : Infos "Coming Soon" allongées -->
-                    <div class="middle-info">
-                        <p class="badge-release">Sortie Coming Soon</p>
-                        <p class="info-text">Tourné dans le département des Hauts-de-France</p>
-                        <p class="info-credits">Crédits : <span>Medyra.Associates</span></p>
-                    </div>
+    <!-- ================= 4. DIGITAL-SERVICE ================= -->
+    <section id="digital-service" class="page">
+        <div class="ds-header">
+            <button class="back-btn" onclick="switchPage('hub')">← Retour au Hub</button>
+            <h2>Digital-Service</h2>
+            <p>Prestataire photo et vidéo.</p>
+        </div>
+
+        <div class="ds-container">
+            <div class="ds-grid">
+                <!-- Case 1 : Logo (Gauche) -->
+                <div class="ds-box ds-box-logo">
+                    <img src="images/logo3.png" alt="Digital Service Logo" class="ds-logo">
                 </div>
 
-                <!-- 3. Zone VERTE : Titre + Texte descriptif à droite avec scroll -->
-                <div class="modal-text-box">
-                    <h3 id="modalTitle"></h3>
-                    <div id="modalDesc" class="modal-desc"></div>
+                <!-- Case 2 : Description des Services (Centre) -->
+                <div class="ds-box ds-box-services">
+                    <h3>Nos Services</h3>
+                    <ul class="ds-services-list">
+                        <li><strong>Photo :</strong> Je ferai les plus beaux clichets de vos évènements.</li>
+                        <li><strong>Vidéo :</strong> Je filmerai pour vous vos meilleurs moments.</li>
+                        <li><strong>Montage :</strong> Je réaliserai un montage photo / vidéo selon vos envies.</li>  
+                    </ul>
+                </div>
+
+                <!-- Case 3 : Contacts (Droite) -->
+                <div class="ds-box ds-box-contact">
+                    <h3>Contact</h3>
+                    <p>Une question ou un projet à nous confier ? Contactez-nous :</p>
+                    <div class="ds-contact-details">
+                        <p>📧 <strong>Email :</strong> contact.medyra@gmail.com</p>
+                        <p>🌐 <strong>Instagram :</strong> @association.medyra</p>
+                        <p>📍 <strong>Région :</strong> Hauts-de-France</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- ================= 4. L'ÉQUIPE ================= -->
+            <!-- Bouton vers la section/pop-up réalisations -->
+            <div class="ds-action">
+                <button class="btn btn-blue" onclick="openRealisationsModal()">Mes réalisations</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 5. L'ÉQUIPE ================= -->
     <section id="team" class="page">
         <div class="projects-header">
-            <button class="back-btn" onclick="switchPage('hub')">← Retour au Hub</button>
+            <button class="back-btn" onclick="switchPage('studio')">← Retour au Studio</button>
             <h2>L'Équipe</h2>
             <p>Les talents qui se cachent derrière Medyra Associates.</p>
         </div>
@@ -141,7 +158,7 @@
             </div>
             <div class="team-card">
                 <h3>Nathan Thoma</h3>
-                <span class="team-role">Co-fondeur, Responsable trésorerie, Co-scénariste, Développement du site web</span>       
+                <span class="team-role">Co-fondateur, Responsable trésorerie, Co-scénariste, Développement du site web</span>       
             </div> 
            <div class="team-card">
                 <h3>Nicolas Souchaud</h3>
@@ -150,13 +167,49 @@
         </div>
     </section>
 
-    <!-- Modal pour afficher la description d'un projet -->
+    <!-- Modal Description Projets -->
     <div id="projectModal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="close-btn" onclick="closeModalForce()">&times;</span>
-            <img id="modalImg" src="" alt="">
-            <h3 id="modalTitle"></h3>
-            <p id="modalDesc"></p>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImg" src="" alt="Affiche A4 du projet">
+                </div>
+                <div class="modal-middle-box">
+                    <div class="middle-banner-container">
+                        <img id="modalMiddleImg" src="" alt="Bannière du projet">
+                    </div>
+                    <div class="middle-info">
+                        <p class="badge-release">Sortie Coming Soon</p>
+                        <p class="info-text">Tourné dans le département des Hauts-de-France</p>
+                        <p class="info-credits">Crédits : <span>Medyra.Associates</span></p>
+                    </div>
+                </div>
+                <div class="modal-text-box">
+                    <h3 id="modalTitle"></h3>
+                    <div id="modalDesc" class="modal-desc"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Réalisations (Digital-Service) -->
+    <div id="realisationsModal" class="modal" onclick="closeRealisationsModal(event)">
+        <div class="modal-content ds-realisations-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeRealisationsModalForce()">&times;</span>
+            <h3>Mes Réalisations</h3>
+            <p class="realisations-intro">Aperçu de mes travaux graphiques et réalisations personnelles :</p>
+            
+            <div class="realisations-grid">
+                <div class="realisation-item">
+                    <img src="images/realisation1.jpg" alt="Réalisation 1">
+                    <span>photo</span>
+                </div>
+                <div class="realisation-item">
+                    <img src="images/realisation2.jpg" alt="Réalisation 2">
+                    <span>vidéo</span>
+                </div>
+            </div>
         </div>
     </div>
 
