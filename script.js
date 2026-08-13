@@ -52,3 +52,29 @@ function closeModal(event) {
         modal.style.display = 'none';
     }
 }
+
+// ================= GESTION DE LA VIDÉO D'INTRO =================
+document.addEventListener('DOMContentLoaded', () => {
+    const introVideo = document.getElementById('intro-video');
+    
+    if (introVideo) {
+        // Déclenche la transition dès que la vidéo est terminée
+        introVideo.addEventListener('ended', endIntro);
+    }
+});
+
+function endIntro() {
+    const introOverlay = document.getElementById('intro-overlay');
+    const introVideo = document.getElementById('intro-video');
+
+    if (introOverlay && !introOverlay.classList.contains('fade-out')) {
+        // 1. Lance la transition visuelle (fondu enchaîné)
+        introOverlay.classList.add('fade-out');
+
+        // 2. Stoppe la vidéo et cache définitivement le calque après 1.2s (durée du CSS)
+        setTimeout(() => {
+            if (introVideo) introVideo.pause();
+            introOverlay.style.display = 'none';
+        }, 1200); 
+    }
+}
