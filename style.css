@@ -164,22 +164,31 @@ body {
     gap: 35px;
 }
 
-.hub-logo {
-    max-width: 380px;
-    width: 80vw;
-    height: auto;
-    filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.25));
-    animation: scintillement 2s infinite ease-in-out;
+/* Conteneur des étoiles autour du logo */
+.hub-logo-container {
+    position: relative;
+    display: inline-block;
 }
 
-@keyframes scintillement {
+/* Style d'une étoile individuelle */
+.sparkle {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: 0 0 8px #ffffff, 0 0 12px rgba(255, 255, 255, 0.8);
+    animation: sparkle-anim var(--duration) ease-in-out infinite;
+}
+
+@keyframes sparkle-anim {
     0%, 100% {
-        filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.25)) brightness(1);
-        opacity: 1;
+        transform: scale(0);
+        opacity: 0;
     }
     50% {
-        filter: drop-shadow(0 10px 40px rgba(255, 255, 255, 0.7)) brightness(1.25);
-        opacity: 0.85;
+        transform: scale(1);
+        opacity: 1;
     }
 }
 
