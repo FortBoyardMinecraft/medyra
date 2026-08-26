@@ -17,29 +17,41 @@
         <button id="skip-intro-btn" onclick="endIntro()">Passer l'intro</button>
     </div>
 
-   <!-- ================= 1. LE HUB (PAGE D'ACCUEIL) ================= -->
+<!-- ================= 1. LE HUB (PAGE D'ACCUEIL) ================= -->
     <section id="hub" class="page active">
+        <div class="hub-overlay"></div>
+
+        <!-- Header d'accueil avec liens réseaux sociaux -->
+        <header class="hub-header">
+            <span class="header-tagline">Suivez notre aventure</span>
+            <div class="header-social-buttons">
+                <a href="https://www.instagram.com/association.medyra/" target="_blank" rel="noopener noreferrer" class="btn btn-social">Instagram</a>
+                <a href="https://www.youtube.com/@OneTeam.OneAdventure" target="_blank" rel="noopener noreferrer" class="btn btn-social">YouTube</a>
+            </div>
+        </header>
+
         <div class="hub-content">
-    <!-- Conteneur du logo avec les étoiles intégrées -->
-    <div class="hub-logo-container">
-        <!-- Étoiles scintillantes dynamiques -->
-        <div class="sparkle" style="top: 10%; left: 15%; --duration: 2.1s; --delay: 0.3s; --size: 5px;"></div>
-        <div class="sparkle" style="top: 75%; left: 8%; --duration: 1.7s; --delay: 1.1s; --size: 4px;"></div>
-        <div class="sparkle" style="top: 20%; left: 85%; --duration: 2.5s; --delay: 0.5s; --size: 6px;"></div>
-        <div class="sparkle" style="top: 80%; left: 80%; --duration: 1.9s; --delay: 1.8s; --size: 3px;"></div>
-        <div class="sparkle" style="top: 50%; left: 92%; --duration: 2.2s; --delay: 0.8s; --size: 5px;"></div>
-        <div class="sparkle" style="top: 5%; left: 50%; --duration: 3s; --delay: 1.5s; --size: 4px;"></div>
-        
-        <!-- Logo principal -->
-        <img src="images/logo2.png" alt="Medyra Associates Logo" class="hub-logo">
-    </div>
-    
-    <!-- Les 2 grands boutons principaux -->
-    <div class="hub-buttons">
-        <button class="btn btn-blue btn-large" onclick="switchPage('studio')">Découvrir le studio</button>
-        <button class="btn btn-black btn-large" onclick="switchPage('digital-service')">Digital-Service</button>
-    </div>
-</div>
+            <!-- Conteneur du logo avec les étoiles diamants intégrées -->
+            <div class="hub-logo-container">
+                <!-- Étoiles diamants scintillantes -->
+                <div class="sparkle" style="top: 5%; left: 10%; --duration: 2.2s; --delay: 0.2s; --size: 10px;"></div>
+                <div class="sparkle" style="top: 70%; left: 5%; --duration: 1.8s; --delay: 1.0s; --size: 8px;"></div>
+                <div class="sparkle" style="top: 15%; left: 88%; --duration: 2.6s; --delay: 0.6s; --size: 12px;"></div>
+                <div class="sparkle" style="top: 85%; left: 82%; --duration: 2.0s; --delay: 1.5s; --size: 9px;"></div>
+                <div class="sparkle" style="top: 45%; left: 95%; --duration: 2.4s; --delay: 0.4s; --size: 11px;"></div>
+                <div class="sparkle" style="top: 2%; left: 50%; --duration: 3.1s; --delay: 1.2s; --size: 7px;"></div>
+                <div class="sparkle" style="top: 90%; left: 45%; --duration: 1.9s; --delay: 0.8s; --size: 10px;"></div>
+
+                <!-- Logo principal -->
+                <img src="images/logo2.png" alt="Medyra Associates Logo" class="hub-logo">
+            </div>
+            
+            <!-- Les 2 grands boutons principaux -->
+            <div class="hub-buttons">
+                <button class="btn btn-blue btn-large" onclick="switchPage('studio')">Découvrir le studio</button>
+                <button class="btn btn-black btn-large" onclick="switchPage('digital-service')">Digital-Service</button>
+            </div>
+        </div>
     </section>
 
     <!-- ================= 2. DÉCOUVRIR LE STUDIO ================= -->
