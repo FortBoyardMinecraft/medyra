@@ -164,30 +164,56 @@ body {
     gap: 35px;
 }
 
-/* Conteneur des étoiles autour du logo */
+/* ================= 1. LE HUB & SCINTILLEMENT ================= */
+
 .hub-logo-container {
     position: relative;
     display: inline-block;
 }
 
-/* Style d'une étoile individuelle */
-.sparkle {
-    position: absolute;
-    background: #ffffff;
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 0;
-    box-shadow: 0 0 8px #ffffff, 0 0 12px rgba(255, 255, 255, 0.8);
-    animation: sparkle-anim var(--duration) ease-in-out infinite;
+/* Animation et style du logo */
+.hub-logo {
+    max-width: 380px;
+    width: 80vw;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.25));
+    animation: hubLogoGlow 2.5s infinite ease-in-out;
 }
 
-@keyframes sparkle-anim {
+@keyframes hubLogoGlow {
     0%, 100% {
-        transform: scale(0);
+        filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.25)) brightness(1);
+    }
+    50% {
+        filter: drop-shadow(0 10px 45px rgba(255, 255, 255, 0.65)) brightness(1.15);
+    }
+}
+
+/* Style des étoiles en forme de DIAMANT étincelant */
+.sparkle {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background: #ffffff;
+    /* Transformation en losange / diamant */
+    transform: rotate(45deg) scale(0);
+    pointer-events: none;
+    opacity: 0;
+    /* Éclat lumineux puissant autour du diamant */
+    box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px rgba(255, 255, 255, 0.8);
+    animation: diamondSparkle var(--duration) infinite ease-in-out;
+    animation-delay: var(--delay);
+    z-index: 3;
+}
+
+@keyframes diamondSparkle {
+    0%, 100% {
+        transform: rotate(45deg) scale(0);
         opacity: 0;
     }
     50% {
-        transform: scale(1);
+        /* Effet de zoom et rotation dynamique du diamant */
+        transform: rotate(225deg) scale(1.2);
         opacity: 1;
     }
 }
